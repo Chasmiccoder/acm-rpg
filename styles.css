@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #202020;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.game-container{    
+    position: relative;
+    width: 352px;
+    height: 198px;
+    margin: 0 auto;
+    outline: 1px solid white;
+
+    transform: scale(3) translateY(50%);
+}
+
+.game-container canvas{
+    /* Removes the blur, which occurs due to scaling */
+    image-rendering: pixelated;
+}
+
+
