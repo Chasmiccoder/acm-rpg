@@ -8,11 +8,23 @@ class Overworld {
 
     init() {
         this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
+        this.map.mountObjects();
+        
         this.directionInput = new DirectionInput();
         this.directionInput.init();
-
+        
         this.startGameLoop();
         // game loop fires at 60 fps
+
+
+        this.map.startCutscene([
+            {who: "hero", type: "walk", direction: "down"},
+            {who: "hero", type: "walk", direction: "down"},
+            {who: "npcA", type: "walk", direction: "left"},
+            {who: "npcA", type: "walk", direction: "left"},
+            {who: "npcA", type: "stand", direction: "up", time: 800},
+
+        ])
         
     }
 
@@ -27,7 +39,9 @@ class Overworld {
             // update all objects
             Object.values( this.map.gameObjects ).forEach( object => {
                 object.update({
-                    arrow: this.directionInput.direction
+                    arrow: this.directionInput.direction,
+                    map: this.map,
+
                 })
             })
             
@@ -36,7 +50,10 @@ class Overworld {
             
             this.map.drawLowerImage(this.context, cameraPerson);
 
-            Object.values( this.map.gameObjects ).forEach( object => {
+            // that sorting is done to render objects that are lower later, so that when someone walks under another person then they first person gets rendered on top
+            Object.values( this.map.gameObjects ).sort((a,b) => {
+                return a.y - b.y;
+            }).forEach( object => {
                 object.sprite.draw(this.context, cameraPerson);
             })
 
@@ -47,7 +64,7 @@ class Overworld {
                 step();
             });
         }
-        console.log(performance.now());
+        // console.log(performance.now());
         step();
     }
 }
