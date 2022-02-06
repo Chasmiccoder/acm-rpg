@@ -53,4 +53,24 @@ class OverworldEvent {
         }
         document.addEventListener("PersonWalkingComplete", completeHandler);
     }
+
+    textMessage(resolve) {
+
+        if(this.event.faceHero) { // this.event.faceHero = id of the npc to face that will face the hero
+            const obj = this.map.gameObjects[this.event.faceHero];
+            obj.direction = utils.oppositeDirection(this.map.gameObjects['hero'].direction);
+        }
+
+        const message = new TextMessage({   
+            text: this.event.text,
+            onComplete: () => resolve()
+        });
+
+        message.init(document.querySelector('.game-container'));
+    }
+
+    changeMap(resolve) {
+        this.map.overworld.startMap(window.OverworldMaps[this.event.map]); // the value this.event.map is referencing {type: "changeMap", map: "Kitchen"}  in OverworldMap
+        resolve();
+    }
 }

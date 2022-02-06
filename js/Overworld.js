@@ -7,8 +7,12 @@ class Overworld {
     }
 
     init() {
-        this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
-        this.map.mountObjects();
+        this.startMap(window.OverworldMaps.DemoRoom);
+
+
+        this.bindActionInput();
+        this.bindHeroPositionCheck();
+
         
         this.directionInput = new DirectionInput();
         this.directionInput.init();
@@ -17,15 +21,44 @@ class Overworld {
         // game loop fires at 60 fps
 
 
-        this.map.startCutscene([
-            {who: "hero", type: "walk", direction: "down"},
-            {who: "hero", type: "walk", direction: "down"},
-            {who: "npcA", type: "walk", direction: "left"},
-            {who: "npcA", type: "walk", direction: "left"},
-            {who: "npcA", type: "stand", direction: "up", time: 800},
 
-        ])
+
+
+
+
+        // this.map.startCutscene([
+            
+        //     {who: "hero", type: "walk", direction: "down"},
+        //     {who: "hero", type: "walk", direction: "down"},
+        //     {who: "npcA", type: "walk", direction: "up"},
+        //     {who: "npcA", type: "walk", direction: "left"},
+        //     {who: "hero", type: "stand", direction: "right", time: 200},
+        //     {type: "textMessage", text: "Why hello there!"},
+        // ])
         
+    }
+
+    bindActionInput() {
+        new KeyPressListener("Enter", () => {
+            // is there a person to talk to?
+            this.map.checkForActionCutscene() // check for a cutscene at a specific position
+
+        })
+    }
+
+    bindHeroPositionCheck() {
+        document.addEventListener("PersonWalkingComplete", e => {
+            if(e.detail.whoId == "hero") {
+                // hero's position has changed
+                this.map.checkForFootstepCutscene();
+            }
+        });
+    }
+
+    startMap(mapConfig) {
+        this.map = new OverworldMap(mapConfig);
+        this.map.overworld = this;
+        this.map.mountObjects();
     }
 
     startGameLoop() {
