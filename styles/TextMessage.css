@@ -15,7 +15,15 @@
 .TextMessage_p {
     margin: 0;
     font-size: 12px;
+}
 
+/* for typewriter effect */
+.TextMessage span{
+    opacity: 0;
+}
+
+.TextMessage span.revealed {
+    opacity: 1;
 }
 
 .TextMessage_button {
@@ -32,3 +40,5 @@
     right: 2px;
     bottom: 0;
 }
+
+

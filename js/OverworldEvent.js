@@ -70,7 +70,13 @@ class OverworldEvent {
     }
 
     changeMap(resolve) {
-        this.map.overworld.startMap(window.OverworldMaps[this.event.map]); // the value this.event.map is referencing {type: "changeMap", map: "Kitchen"}  in OverworldMap
-        resolve();
+        const sceneTransition = new SceneTransition();
+
+        sceneTransition.init(document.querySelector('.game-container'), () => {
+            this.map.overworld.startMap(window.OverworldMaps[this.event.map]); // the value this.event.map is referencing {type: "changeMap", map: "Kitchen"}  in OverworldMap
+            resolve(); 
+
+            sceneTransition.fadeOut();
+        });
     }
 }
