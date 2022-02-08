@@ -31,7 +31,8 @@ class Sprite {
             "walk-left":  [[1,3], [0,3], [3,3], [0,3]],
         }
 
-        this.currentAnimation = "idle-right"//config.currentAnimation || "idle-down";
+        // this.currentAnimation = "idle-right"  //config.currentAnimation || "idle-down";
+        this.currentAnimation = config.currentAnimation || "idle-right";
         this.currentAnimationFrame = 0;
 
         // how many game loop frames to show one cut from the sprite sheet
@@ -54,7 +55,6 @@ class Sprite {
             this.animationFrameProgress = this.animationFrameLimit;
         }
     }
-
 
     updateAnimationProgress() {
         // downtick current frame's progress

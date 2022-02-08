@@ -91,8 +91,6 @@ class OverworldMap {
         }
     }
 
-
-
     addWall(x,y) {
         this.walls[`${x},${y}`] = true;
     }
@@ -106,22 +104,32 @@ class OverworldMap {
         const {x,y} = utils.nextPosition(wasX,wasY,direction);
         this.addWall(x,y);
     }
-
-
 }
 
 window.OverworldMaps = {
     DemoRoom: {
-        // lowerSrc: "./images/DemoLower.png",
+        // lowerSrc: "./images/HarshGeniusMap1.png",
+        // lowerSrc: "./images/ourMap96.png",
         lowerSrc: "./images/DemoLower.png",
         upperSrc: "./images/DemoUpper.png",
         gameObjects: {
 
             hero: new Person({
                 isPlayerControlled: true,
+                // src: "./images/hero64.png",
                 x: utils.withGrid(5),
                 y: utils.withGrid(6)
             }),
+
+            // myDrone: new Person({
+            //     x: utils.withGrid(8),
+            //     y: utils.withGrid(8),
+            //     src: "./images/myDrone.png",
+            //     animations: { // these values are according to the drone's spritesheet
+            //         "spinning": [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7]]
+            //     },
+            //     currentAnimation: "spinning",
+            // }),
             
             npcA: new Person({
                 x: utils.withGrid(7),
