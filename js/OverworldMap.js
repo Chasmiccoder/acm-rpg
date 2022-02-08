@@ -109,14 +109,13 @@ class OverworldMap {
 window.OverworldMaps = {
     DemoRoom: {
         // lowerSrc: "./images/HarshGeniusMap1.png",
-        // lowerSrc: "./images/ourMap96.png",
-        lowerSrc: "./images/DemoLower.png",
+        lowerSrc: "./images/ourMap16.png",
+        // lowerSrc: "./images/DemoLower.png",
         upperSrc: "./images/DemoUpper.png",
         gameObjects: {
-
             hero: new Person({
                 isPlayerControlled: true,
-                // src: "./images/hero64.png",
+                // src: "./images/hero16.png",
                 x: utils.withGrid(5),
                 y: utils.withGrid(6)
             }),
