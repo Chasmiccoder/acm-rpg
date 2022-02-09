@@ -20,7 +20,7 @@ class OverworldMap {
 
     drawLowerImage(context, cameraPerson) {
         // context.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
-        context.drawImage(this.lowerImage, utils.withGrid(10.15) - cameraPerson.x, utils.withGrid(6.5) - cameraPerson.y); // fixing offset
+        context.drawImage(this.lowerImage, utils.withGrid(10.33) - cameraPerson.x, utils.withGrid(6.5) - cameraPerson.y); // fixing offset
     }
 
     drawUpperImage(context, cameraPerson) {
@@ -109,7 +109,7 @@ class OverworldMap {
 
 window.OverworldMaps = {
     DemoRoom: {
-        lowerSrc: "./images/official_assets/ourMap32.png", // current best map is= 
+        lowerSrc: "./images/official_assets/ourMap32.png", // current best map is= ./images/official_assets/ourMap32.png
         // lowerSrc: "./images/ourMap16.png",
         // lowerSrc: "./images/DemoLower.png",
         upperSrc: "./images/DemoUpper.png",

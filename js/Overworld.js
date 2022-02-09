@@ -2,13 +2,19 @@ class Overworld {
     constructor(config) {
         this.element = config.element;
         this.canvas = this.element.querySelector(".game-canvas");
-        // this.canvas.height = window.innerHeight;        
-        // this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;        
+        this.canvas.width = window.innerWidth;
+
+
+        // this.gameContainer = this.element.querySelector(".game-container");
+        // this.gameContainer.style.width = window.innerWidth;
+        // this.gameContainer.style.height = window.innerHeight;
+
 
         // this.canvas.height = 1000; // TODO: Change this!
         // this.canvas.width = 1500;
 
-        console.log(this.canvas.height, this.canvas.width);
+        console.log(this.canvas.width, this.canvas.height);
 
         this.context = this.canvas.getContext("2d");
         this.map = null;
