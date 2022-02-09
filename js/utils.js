@@ -11,7 +11,7 @@ const utils = {
     nextPosition(initialX, initialY, direction) {
         let x = initialX;
         let y = initialY;
-        const size = 32;
+        const size = 32; // size = 16
         if(direction == "left") {
             x -= size;
         } else if(direction == "right") {
