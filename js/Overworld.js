@@ -89,7 +89,7 @@ class Overworld {
                 object.sprite.draw(this.context, cameraPerson);
             })
 
-            this.map.drawUpperImage(this.context, cameraPerson);
+            // this.map.drawUpperImage(this.context, cameraPerson);
 
             // call step when a new frame starts
             requestAnimationFrame( () => {

@@ -23,7 +23,57 @@ let hemanthPath = [
 ]
 
 // hemanth's cutscene's set of coordinates
-let hemanth_cutscene_set_of_coords = [`${10*32},${9*32}`,`${11*32},${10*9}`,`${12*32},${9*32}`,`${13*32},${9*32}`,`${14*32},${9*32}`,`${15*32},${9*32}`,`${16*32},${9*32}`,`${17*32},${9*32}`,`${18*32},${9*32}`,`${19*32},${9*32}`,];
+let hemanth_cutscene_set_of_coords = [`${10*32},${9*32}`,`${11*32},${9*32}`,`${12*32},${9*32}`,`${13*32},${9*32}`,`${14*32},${9*32}`,`${15*32},${9*32}`,`${16*32},${9*32}`,`${17*32},${9*32}`,`${18*32},${9*32}`,`${19*32},${9*32}`,];
+
+let dhritiPath = [
+    {who: "dhriti", type: "walk", direction: "down"},
+    {who: "dhriti", type: "walk", direction: "right"},
+    {who: "dhriti", type: "walk", direction: "down"},
+    {who: "dhriti", type: "walk", direction: "right"},
+
+    {who: "dhriti", type: "walk", direction: "right"},
+    {who: "dhriti", type: "walk", direction: "right"},
+    {who: "dhriti", type: "walk", direction: "right"},
+
+    {who: "dhriti", type: "stand", direction: "right", time:500},
+    {type: "textMessage", text: "Are you good looking?"},
+    {type: "textMessage", text: "Of course you are!"},
+    {type: "textMessage", text: "But we want people that can make things that are good looking..."},
+    {type: "textMessage", text: "If you're interested, enter the portal and hit 'Enter'!"},
+
+    {who: "dhriti", type: "walk", direction: "left"},
+    {who: "dhriti", type: "walk", direction: "left"},
+    {who: "dhriti", type: "walk", direction: "left"},
+
+    {who: "dhriti", type: "walk", direction: "left"},
+    {who: "dhriti", type: "walk", direction: "up"},
+    {who: "dhriti", type: "walk", direction: "left"},
+    {who: "dhriti", type: "walk", direction: "up"},
+]
+
+let dhriti_cutscene_set_of_coords = [`${9*32},${31*32}`,`${9*32},${32*32}`,`${9*32},${33*32}`,`${9*32},${34*32}`,`${9*32},${35*32}`,`${9*32},${36*32}`,`${9*32},${37*32}`];
+
+let diyaPath = [
+    {who: "diya", type: "walk", direction: "up"},
+    {who: "diya", type: "walk", direction: "left"},
+    {who: "diya", type: "walk", direction: "up"},
+    {who: "diya", type: "walk", direction: "up"},
+    {who: "diya", type: "walk", direction: "up"},
+    
+    {who: "diya", type: "stand", direction: "up", time:500},
+    {type: "textMessage", text:"Will you be able to manage management?"},
+    {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
+
+    {who: "diya", type: "walk", direction: "right"},
+    {who: "diya", type: "walk", direction: "down"},
+    {who: "diya", type: "walk", direction: "down"},
+    {who: "diya", type: "walk", direction: "down"},
+    {who: "diya", type: "walk", direction: "down"},
+]
+
+let diya_cutscene_set_of_coords = [`${12*32},${38*32}`,`${13*32},${38*32}`,`${14*32},${38*32}`,`${15*32},${38*32}`,`${16*32},${38*32}`,`${17*32},${38*32}`,`${18*32},${38*32}`];
+
+
 
 class OverworldMap {
     constructor(config) {
@@ -36,10 +86,10 @@ class OverworldMap {
         this.walls = config.walls || {};
 
         this.lowerImage = new Image();
-        this.upperImage = new Image();
+        // this.upperImage = new Image();
         
         this.lowerImage.src = config.lowerSrc; // floor
-        this.upperImage.src = config.upperSrc; // what is rendered above the floor (above the player) like tree tops
+        // this.upperImage.src = config.upperSrc; // what is rendered above the floor (above the player) like tree tops
         
         this.isCutscenePlaying = false;
     
@@ -118,20 +168,33 @@ class OverworldMap {
             this.startCutscene(match[0].events); // right now it's pulling the behavior at the 0th index. Can be changed depending on the current story
         }
 
-
         // if hero steps on a 'set' of tiles that triggers 'one' cutscene
         // then remove that 'set' of tiles for that corresponding cutscene from cutsceneSpaces
         // optimize later, dividing by 32 for now, but use proper utils function later
         const hero_tile = `${hero.x},${hero.y}`;
-        if (hemanth_cutscene_set_of_coords.includes(hero_tile)) {
-            console.log("before:", this.cutsceneSpaces);
+        
+        if(hemanth_cutscene_set_of_coords.includes(hero_tile)) {
+            // console.log("before:", this.cutsceneSpaces);
             // let tmp = {...this.cutsceneSpa
             for(let i = 0; i < hemanth_cutscene_set_of_coords.length; i++) {
                 delete this.cutsceneSpaces[hemanth_cutscene_set_of_coords[i]];
             }
             // this.cutsceneSpaces = [...tmp];
-            console.log("after:", this.cutsceneSpaces);
+            // console.log("after:", this.cutsceneSpaces);
         }
+
+        else if(dhriti_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < dhriti_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[dhriti_cutscene_set_of_coords[i]];
+            }
+        }
+
+        else if(diya_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < diya_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[diya_cutscene_set_of_coords[i]];
+            }
+        }
+
     }
 
     addWall(x,y) {
@@ -151,16 +214,16 @@ class OverworldMap {
 
 window.OverworldMaps = {
     DemoRoom: {
-        lowerSrc: "./images/official_assets/ourMap32.png", // current best map is= ./images/official_assets/ourMap32.png
+        lowerSrc: "./images/FINAL_FOR_REALZ_.png", // current best map is= ./images/official_assets/ourMap32.png
         // lowerSrc: "./images/ourMap16.png",
         // lowerSrc: "./images/DemoLower.png",
-        upperSrc: "./images/DemoUpper.png",
+        // upperSrc: "./images/DemoUpper.png",
         gameObjects: {
             hero: new Person({
                 isPlayerControlled: true,
-                src: "./images/brownGuy1.png",
-                x: utils.withGrid(9),
-                y: utils.withGrid(10)
+                src: "./images/Hero.png",
+                x: utils.withGrid(15), // 15 33
+                y: utils.withGrid(33),
             }),
 
             // myDrone: new Person({
@@ -241,6 +304,7 @@ window.OverworldMaps = {
                     {
                         // defined this way so that people can say different things, at different points in time
                         events: [
+                            // independent event where Hemanth gets to say what he wants
                             {type: "textMessage", text: "It's about drive, it's about power", faceHero: "hemanth"},
                             {type: "textMessage", text: "We stay hungry, we devour!"},
                         ]
@@ -260,7 +324,28 @@ window.OverworldMaps = {
                 ],
                 talking: [
                     {
-                        // defined this way so that people can say different things, at different points in time
+                        events: [
+                            // independent event where Dhriti gets to say what he wants
+                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
+                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                        ]
+                    },
+                ]
+            }),
+
+
+            diya: new Person({
+                x: utils.withGrid(16),
+                y: utils.withGrid(44),
+                src: "./images/diya.png",
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
+                ],
+                talking: [
+                    {
                         events: [
                             {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
                             {type: "textMessage", text: "We stay hungry, we devour!"},
@@ -269,7 +354,28 @@ window.OverworldMaps = {
                 ]
             }),
 
+            ishi: new Person({
+                x: utils.withGrid(11),
+                y: utils.withGrid(46),
+                src: "./images/ishi.png",
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Am I Ishi?", faceHero: "ishi"},
+                            {type: "textMessage", text: "Or any boring person?"},
+                        ]
+                    },
+                ]
+            }),
+
         },
+
         walls: {
             // [utils.asGridCoord(7,6)]: true,
             // [utils.asGridCoord(8,6)]: true,
@@ -287,6 +393,26 @@ window.OverworldMaps = {
             [utils.asGridCoord(17,9)]: [{events: hemanthPath}],
             [utils.asGridCoord(18,9)]: [{events: hemanthPath}],
             [utils.asGridCoord(19,9)]: [{events: hemanthPath}],
+
+            [utils.asGridCoord(9,31)]: [{events: dhritiPath}],
+            [utils.asGridCoord(9,32)]: [{events: dhritiPath}],
+            [utils.asGridCoord(9,33)]: [{events: dhritiPath}],
+            [utils.asGridCoord(9,34)]: [{events: dhritiPath}],
+            [utils.asGridCoord(9,35)]: [{events: dhritiPath}],
+            [utils.asGridCoord(9,36)]: [{events: dhritiPath}],
+            [utils.asGridCoord(9,37)]: [{events: dhritiPath}],
+
+            [utils.asGridCoord(12,38)]: [{events: diyaPath}],
+            [utils.asGridCoord(13,38)]: [{events: diyaPath}],
+            [utils.asGridCoord(14,38)]: [{events: diyaPath}],
+            [utils.asGridCoord(15,38)]: [{events: diyaPath}],
+            [utils.asGridCoord(16,38)]: [{events: diyaPath}],
+            [utils.asGridCoord(17,38)]: [{events: diyaPath}],
+            [utils.asGridCoord(18,38)]: [{events: diyaPath}],
+
+
+
+
 
 
 
@@ -324,7 +450,7 @@ window.OverworldMaps = {
 
     Kitchen: {
         lowerSrc: "./images/KitchenLower.png",
-        upperSrc: "./images/KitchenUpper.png",
+        // upperSrc: "./images/KitchenUpper.png",
         gameObjects: {
             hero: new Person({
                 isPlayerControlled: true,
