@@ -1,3 +1,30 @@
+let hemanthPath = [
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+    {who: "hemanth", type: "walk", direction: "right"},
+
+    {who: "hemanth", type: "stand", direction: "right", time:500},
+    {type: "textMessage", text: "Are you up for applying to the technical department?"},
+    {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
+
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+    {who: "hemanth", type: "walk", direction: "left"},
+]
+
+// hemanth's cutscene's set of coordinates
+let hemanth_cutscene_set_of_coords = [`${10*32},${9*32}`,`${11*32},${10*9}`,`${12*32},${9*32}`,`${13*32},${9*32}`,`${14*32},${9*32}`,`${15*32},${9*32}`,`${16*32},${9*32}`,`${17*32},${9*32}`,`${18*32},${9*32}`,`${19*32},${9*32}`,];
+
 class OverworldMap {
     constructor(config) {
         // adding a back-reference to the overworld
@@ -59,7 +86,7 @@ class OverworldMap {
         this.isCutscenePlaying = false;
 
         // reset npc's to do their normal behaviour
-        Object.values(this.gameObjects).forEach(object => object.doBehaviorEvent(this))
+        Object.values(this.gameObjects).forEach(object => object.doBehaviorEvent(this));
     }
 
     checkForActionCutscene() {
@@ -83,12 +110,27 @@ class OverworldMap {
     checkForFootstepCutscene() {
         const hero = this.gameObjects['hero'];
         const match = this.cutsceneSpaces[`${hero.x},${hero.y}`];
-        
+
         // is undefined for normal tiles, but displays the object if you step on a tile that triggers a cutscene
         // console.log(match);
 
         if(!this.isCutscenePlaying && match) {
             this.startCutscene(match[0].events); // right now it's pulling the behavior at the 0th index. Can be changed depending on the current story
+        }
+
+
+        // if hero steps on a 'set' of tiles that triggers 'one' cutscene
+        // then remove that 'set' of tiles for that corresponding cutscene from cutsceneSpaces
+        // optimize later, dividing by 32 for now, but use proper utils function later
+        const hero_tile = `${hero.x},${hero.y}`;
+        if (hemanth_cutscene_set_of_coords.includes(hero_tile)) {
+            console.log("before:", this.cutsceneSpaces);
+            // let tmp = {...this.cutsceneSpa
+            for(let i = 0; i < hemanth_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[hemanth_cutscene_set_of_coords[i]];
+            }
+            // this.cutsceneSpaces = [...tmp];
+            console.log("after:", this.cutsceneSpaces);
         }
     }
 
@@ -117,8 +159,8 @@ window.OverworldMaps = {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/brownGuy1.png",
-                x: utils.withGrid(18),
-                y: utils.withGrid(25)
+                x: utils.withGrid(9),
+                y: utils.withGrid(10)
             }),
 
             // myDrone: new Person({
@@ -132,9 +174,9 @@ window.OverworldMaps = {
             // }),
             
             npcA: new Person({
-                x: utils.withGrid(7),
+                x: utils.withGrid(19),
                 y: utils.withGrid(9),
-                src: "./images/npc1.png",
+                src: "./images/brownGuy1.png",
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -147,31 +189,42 @@ window.OverworldMaps = {
                         events: [
                             {type: "textMessage", text: "I'm busy...", faceHero: "npcA"},
                             {type: "textMessage", text: "Go away!"},
-                            {who: "hero", type: "walk", direction: "left"}
+                            // {who: "hero", type: "walk", direction: "left"}
                         ]
                     },
-
-                    // saying a different thing later
-                    // {
-                    //     events: [
-                    //         {type: "textMessage", text: "Congrats on beating that boss!"}
-                    //     ]
-                    // }
-                ]
+                ],
             }),
+            //         // saying a different thing later
+            //         // {
+            //         //     events: [
+            //         //         {type: "textMessage", text: "Congrats on beating that boss!"}
+            //         //     ]
+            //         // }
+            //     ]
+            // }),
 
-            npcB: new Person({
-                x: utils.withGrid(8),
-                y: utils.withGrid(5),
-                src: "./images/npc2.png",
-                // behaviorLoop: [
-                //     {type: "walk", direction: "left"},
-                //     {type: "stand", direction: "left", time: 800},
-                //     {type: "walk", direction: "up"},
-                //     {type: "walk", direction: "right"},
-                //     {type: "walk", direction: "down"}
-                // ]
-            }),
+            // npcB: new Person({
+            //     x: utils.withGrid(8),
+            //     y: utils.withGrid(5),
+            //     src: "./images/brownGuy1.png",
+            //     behaviorLoop: [
+            //         {type: "walk", direction: "left"},
+            //         // {type: "stand", direction: "left", time: 800},
+            //         {type: "walk", direction: "up"},
+            //         {type: "walk", direction: "right"},
+            //         {type: "walk", direction: "down"},
+            //     ],
+            //     talking: [
+            //         {
+            //             // defined this way so that people can say different things, at different points in time
+            //             events: [
+            //                 {type: "textMessage", text: "It's about drive, it's about power", faceHero: "hemanth"},
+            //                 {type: "textMessage", text: "We stay hungry, we devour!"},
+            //                 // {who: "hero", type: "walk", direction: "left"}
+            //             ]
+            //         },
+            //     ]
+            // }),
 
 
             hemanth: new Person({
@@ -179,30 +232,10 @@ window.OverworldMaps = {
                 y: utils.withGrid(10),
                 src: "./images/brownGuy1.png",
                 behaviorLoop: [
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"up"},
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"down"},
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"right"},
-                    {type:"walk",direction:"right"},
-                    // {type:"stand",direction:"r",time:500},
-                    {type:"walk",direction:"down"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"down"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"left"},
-                    // {type:"stand",direction:"u",time:500},
-                    {type:"walk",direction:"up"},
-                    {type:"walk",direction:"left"},
-                    {type:"walk",direction:"up"},
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
                 ],
                 talking: [
                     {
@@ -210,48 +243,81 @@ window.OverworldMaps = {
                         events: [
                             {type: "textMessage", text: "It's about drive, it's about power", faceHero: "hemanth"},
                             {type: "textMessage", text: "We stay hungry, we devour!"},
-                            // {who: "hero", type: "walk", direction: "left"}
                         ]
                     },
+                ]
+            }),
 
-                    // saying a different thing later
-                    // {
-                    //     events: [
-                    //         {type: "textMessage", text: "Congrats on beating that boss!"}
-                    //     ]
-                    // }
+            dhriti: new Person({
+                x: utils.withGrid(2),
+                y: utils.withGrid(31),
+                src: "./images/dhriti.png",
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
+                ],
+                talking: [
+                    {
+                        // defined this way so that people can say different things, at different points in time
+                        events: [
+                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
+                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                        ]
+                    },
                 ]
             }),
 
         },
         walls: {
-            [utils.asGridCoord(7,6)]: true,
-            [utils.asGridCoord(8,6)]: true,
-            [utils.asGridCoord(7,7)]: true,
-            [utils.asGridCoord(8,7)]: true,   
+            // [utils.asGridCoord(7,6)]: true,
+            // [utils.asGridCoord(8,6)]: true,
+            // [utils.asGridCoord(7,7)]: true,
+            // [utils.asGridCoord(8,7)]: true,
         },
         cutsceneSpaces: {
-            [utils.asGridCoord(7,4)]: [
-                // doing it this way so that for example if you step on a cutscene space
-                // and if the cutscene gets over, then the same cutscene should not play when you step on the same tile again
-                {
-                    events: [
-                        {who: "npcB", type: "walk", direction: "left"},
-                        {who: "npcB", type: "stand", direction: "up", time:500},
-                        {type: "textMessage", text: "You can't be in there!"},
-                        {who: "npcB", type: "walk", direction: "right"},
-                        {who: "hero", type: "walk", direction: "down"},
-                        {who: "hero", type: "walk", direction: "left"},
-                    ]
-                }
-            ],
-            [utils.asGridCoord(5,10)]: [
-                {
-                    events: [
-                        {type: "changeMap", map: "Kitchen"} // gets referenced in OverworldEvent
-                    ]
-                }
-            ]
+            [utils.asGridCoord(10,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(11,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(12,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(13,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(14,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(15,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(16,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(17,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(18,9)]: [{events: hemanthPath}],
+            [utils.asGridCoord(19,9)]: [{events: hemanthPath}],
+
+
+
+            // [utils.asGridCoord(5,10)]: [
+            //     {
+            //         events: [
+            //             {type: "changeMap", map: "Kitchen"} // gets referenced in OverworldEvent
+            //         ]
+            //     }
+            // ]
+            // [utils.asGridCoord(7,4)]: [
+            //     // doing it this way so that for example if you step on a cutscene space
+            //     // and if the cutscene gets over, then the same cutscene should not play when you step on the same tile again
+            //     {
+            //         events: [
+            //             {who: "npcB", type: "walk", direction: "left"},
+            //             {who: "npcB", type: "stand", direction: "up", time:500},
+            //             {type: "textMessage", text: "You can't be in there!"},
+            //             {who: "npcB", type: "walk", direction: "right"},
+            //             {who: "hero", type: "walk", direction: "down"},
+            //             {who: "hero", type: "walk", direction: "left"},
+            //         ]
+            //     }
+            // ],
+            // [utils.asGridCoord(5,10)]: [
+            //     {
+            //         events: [
+            //             {type: "changeMap", map: "Kitchen"} // gets referenced in OverworldEvent
+            //         ]
+            //     }
+            // ]
             
         }
     },

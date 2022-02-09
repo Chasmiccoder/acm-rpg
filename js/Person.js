@@ -12,6 +12,7 @@ class Person extends GameObject {
             "left": ["x", -2],
             "right": ["x", 2]
         }
+
     }
 
     update(state) {
@@ -30,24 +31,23 @@ class Person extends GameObject {
                     direction: state.arrow
                 })
             }
-
             this.updateSprite(state);
         }        
     }
 
     startBehavior(state, behavior) {
+
         // set character direction to whatever behavior has
         this.direction = behavior.direction;
         if(behavior.type === "walk") {
 
             // stop if space is not free (wall collision)
             if(state.map.isSpaceTaken(this.x, this.y, this.direction)) {
-
                 // if the player bumps into an npc, then once the npc can move, he should start moving
                 behavior.retry && setTimeout(() => {
+                    // this.retrying = true;
                     this.startBehavior(state, behavior);
                 }, 10);
-
 
                 return; // stop the function
             }
@@ -60,7 +60,6 @@ class Person extends GameObject {
 
         if(behavior.type === "stand") {
             this.isStanding = true;
-
             setTimeout(() => {
                 utils.emitEvent("PersonStandComplete", {
                     whoId: this.id
@@ -77,7 +76,6 @@ class Person extends GameObject {
 
         if(this.movingProgressRemaining === 0) {
             // walking is finished
-
             utils.emitEvent("PersonWalkingComplete", {
                 whoId: this.id
             });
