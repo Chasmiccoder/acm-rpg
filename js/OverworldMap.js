@@ -19,6 +19,7 @@ class OverworldMap {
     }
 
     drawLowerImage(context, cameraPerson) {
+        // context.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
         context.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
     }
 
@@ -108,16 +109,16 @@ class OverworldMap {
 
 window.OverworldMaps = {
     DemoRoom: {
-        // lowerSrc: "./images/HarshGeniusMap1.png",
-        lowerSrc: "./images/ourMap16.png",
+        lowerSrc: "./images/official_assets/our_map_official.svg", // current best map is= 
+        // lowerSrc: "./images/ourMap16.png",
         // lowerSrc: "./images/DemoLower.png",
         upperSrc: "./images/DemoUpper.png",
         gameObjects: {
             hero: new Person({
                 isPlayerControlled: true,
-                // src: "./images/hero16.png",
-                x: utils.withGrid(5),
-                y: utils.withGrid(6)
+                src: "./images/brownGuy1.png",
+                x: utils.withGrid(20),
+                y: utils.withGrid(20)
             }),
 
             // myDrone: new Person({

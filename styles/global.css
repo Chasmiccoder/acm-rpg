@@ -20,13 +20,13 @@ body {
 
 .game-container{    
     position: relative;
-    width: 352px;
-    height: 198px;
+    /* width: 352px; */
+    /* height: 198px; */
     margin: 0 auto;
     outline: 1px solid white;
 
-    transform: scale(3) translateY(50%);
-    /* transform: scale(1.5) translateY(50%); */
+    /* transform: scale(3) translateY(50%); */
+    transform: scale(1.5) translateY(0%);
     /* transform: scale(1) translate(50%); */
     /* transform:translateY(20%); */
 }

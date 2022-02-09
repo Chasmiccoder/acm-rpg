@@ -2,6 +2,8 @@ class Overworld {
     constructor(config) {
         this.element = config.element;
         this.canvas = this.element.querySelector(".game-canvas");
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = window.innerWidth;
         this.context = this.canvas.getContext("2d");
         this.map = null;
     }
