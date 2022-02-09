@@ -5,7 +5,6 @@ class Overworld {
         this.canvas.height = window.innerHeight;        
         this.canvas.width = window.innerWidth;
 
-
         // this.gameContainer = this.element.querySelector(".game-container");
         // this.gameContainer.style.width = window.innerWidth;
         // this.gameContainer.style.height = window.innerHeight;

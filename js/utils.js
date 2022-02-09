@@ -1,11 +1,11 @@
 const utils = {
     withGrid(n) {
-        return n * 16;
+        return n * 32;
         // return n*16;
     },
 
     asGridCoord(x, y) {
-        return `${x*16},${y*16}`;
+        return `${x*32},${y*32}`;
     },
 
     nextPosition(initialX, initialY, direction) {

@@ -20,11 +20,12 @@ class OverworldMap {
 
     drawLowerImage(context, cameraPerson) {
         // context.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
-        context.drawImage(this.lowerImage, utils.withGrid(10.33) - cameraPerson.x, utils.withGrid(6.5) - cameraPerson.y); // fixing offset
+        // context.drawImage(this.lowerImage, utils.withGrid(10.33) - cameraPerson.x, utils.withGrid(6.5) - cameraPerson.y); // fixing offset
+        context.drawImage(this.lowerImage, utils.withGrid(10.40) - cameraPerson.x, utils.withGrid(6.7) - cameraPerson.y);
     }
 
     drawUpperImage(context, cameraPerson) {
-        context.drawImage(this.upperImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
+        context.drawImage(this.upperImage, utils.withGrid(10.40) - cameraPerson.x, utils.withGrid(6.7) - cameraPerson.y);
     }
 
     isSpaceTaken(currentX, currentY, direction) {
@@ -117,8 +118,8 @@ window.OverworldMaps = {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/brownGuy1.png",
-                x: utils.withGrid(30),
-                y: utils.withGrid(45)
+                x: utils.withGrid(18),
+                y: utils.withGrid(25)
             }),
 
             // myDrone: new Person({
