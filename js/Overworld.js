@@ -2,15 +2,20 @@ class Overworld {
     constructor(config) {
         this.element = config.element;
         this.canvas = this.element.querySelector(".game-canvas");
-        this.canvas.height = window.innerHeight;
-        this.canvas.width = window.innerWidth;
+        // this.canvas.height = window.innerHeight;        
+        // this.canvas.width = window.innerWidth;
+
+        // this.canvas.height = 1000; // TODO: Change this!
+        // this.canvas.width = 1500;
+
+        console.log(this.canvas.height, this.canvas.width);
+
         this.context = this.canvas.getContext("2d");
         this.map = null;
     }
 
     init() {
         this.startMap(window.OverworldMaps.DemoRoom);
-
 
         this.bindActionInput();
         this.bindHeroPositionCheck();
