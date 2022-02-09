@@ -3,9 +3,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 36px;
-    font-size: 12px;
-    padding: 4px;
+    /* height: 36px; */
+    height: 96px;
+    /* font-size: 12px; */
+    /* font-size: 48px; */
+    /* padding: 4px; */
+    padding: 20px;
 
     background: var(--menu-background);
     border-top: 1px solid var(--menu-border-color);
@@ -14,7 +17,8 @@
 
 .TextMessage_p {
     margin: 0;
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-size: 24px;
 }
 
 /* for typewriter effect */
@@ -28,8 +32,10 @@
 
 .TextMessage_button {
     margin: 0;
-    font-size: 8px;
-    padding: 0;
+    /* font-size: 8px; */
+    font-size: 24px;
+    padding: 20px;
+    /* padding: 30px; */
     -webkit-appearance: none;
     background: none;
     border: 0;
@@ -40,5 +46,3 @@
     right: 2px;
     bottom: 0;
 }
-
-

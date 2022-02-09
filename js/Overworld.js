@@ -9,7 +9,6 @@ class Overworld {
         // this.gameContainer.style.width = window.innerWidth;
         // this.gameContainer.style.height = window.innerHeight;
 
-
         // this.canvas.height = 1000; // TODO: Change this!
         // this.canvas.width = 1500;
 
@@ -21,10 +20,8 @@ class Overworld {
 
     init() {
         this.startMap(window.OverworldMaps.DemoRoom);
-
         this.bindActionInput();
         this.bindHeroPositionCheck();
-
         
         this.directionInput = new DirectionInput();
         this.directionInput.init();

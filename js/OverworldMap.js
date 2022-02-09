@@ -58,7 +58,6 @@ class OverworldMap {
 
         this.isCutscenePlaying = false;
 
-
         // reset npc's to do their normal behaviour
         Object.values(this.gameObjects).forEach(object => object.doBehaviorEvent(this))
     }
@@ -173,6 +172,57 @@ window.OverworldMaps = {
                 //     {type: "walk", direction: "down"}
                 // ]
             }),
+
+
+            hemanth: new Person({
+                x: utils.withGrid(2),
+                y: utils.withGrid(10),
+                src: "./images/brownGuy1.png",
+                behaviorLoop: [
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"up"},
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"down"},
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"right"},
+                    {type:"walk",direction:"right"},
+                    // {type:"stand",direction:"r",time:500},
+                    {type:"walk",direction:"down"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"down"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"left"},
+                    // {type:"stand",direction:"u",time:500},
+                    {type:"walk",direction:"up"},
+                    {type:"walk",direction:"left"},
+                    {type:"walk",direction:"up"},
+                ],
+                talking: [
+                    {
+                        // defined this way so that people can say different things, at different points in time
+                        events: [
+                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "hemanth"},
+                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                            // {who: "hero", type: "walk", direction: "left"}
+                        ]
+                    },
+
+                    // saying a different thing later
+                    // {
+                    //     events: [
+                    //         {type: "textMessage", text: "Congrats on beating that boss!"}
+                    //     ]
+                    // }
+                ]
+            }),
+
         },
         walls: {
             [utils.asGridCoord(7,6)]: true,
