@@ -82,7 +82,7 @@ let rehberPath = [
     {who: "rehber", type: "walk", direction: "up"},
     {who: "rehber", type: "walk", direction: "up"},
 
-    {who: "diya", type: "stand", direction: "up", time:500},
+    {who: "rehber", type: "stand", direction: "up", time:500},
     {type: "textMessage", text:"Wanna join our cool competitive team?"},
     {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
 
@@ -95,6 +95,27 @@ let rehberPath = [
 ]
 
 let rehber_cutscene_set_of_coords = [`${33*32},${63*32}`, `${34*32},${63*32}`, `${35*32},${63*32}`];
+
+const getRoute = (x,y, name, link) =>{
+    let route = new Person({
+        x: utils.withGrid(x),
+        y: utils.withGrid(y),
+        src: "./images/blankGuy.png",
+        useShadow:false,
+        talking: [
+            {
+                events: [
+                    {type: "textMessage", text: `Redirecting to ACMVIT's ${name}!`},
+                    {type: "redirectPerson", link: link, newTab: true},
+                ]
+            },
+        ]
+    });
+
+    return route;
+}
+
+
 
 
 class OverworldMap {
@@ -250,6 +271,7 @@ window.OverworldMaps = {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
+                useShadow: true,
                 x: utils.withGrid(32), // 32 44
                 y: utils.withGrid(44),
             }),
@@ -268,6 +290,7 @@ window.OverworldMaps = {
                 x: utils.withGrid(19),
                 y: utils.withGrid(9),
                 src: "./images/brownGuy1.png",
+                useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -322,6 +345,7 @@ window.OverworldMaps = {
                 x: utils.withGrid(2),
                 y: utils.withGrid(10),
                 src: "./images/brownGuy1.png",
+                useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -344,6 +368,7 @@ window.OverworldMaps = {
                 x: utils.withGrid(2),
                 y: utils.withGrid(31),
                 src: "./images/dhriti.png",
+                useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -366,6 +391,7 @@ window.OverworldMaps = {
                 x: utils.withGrid(16),
                 y: utils.withGrid(44),
                 src: "./images/diya.png",
+                useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -375,8 +401,7 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
-                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                            {type: "textMessage", text: "Don't make a Diya joke around me", faceHero: "diya"},
                         ]
                     },
                 ]
@@ -386,6 +411,7 @@ window.OverworldMaps = {
                 x: utils.withGrid(11),
                 y: utils.withGrid(46),
                 src: "./images/ishi.png",
+                useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -405,7 +431,8 @@ window.OverworldMaps = {
             rehber: new Person({
                 x: utils.withGrid(30),
                 y: utils.withGrid(66),
-                src: "./images/brownGuy1.png",
+                src: "./images/rehber.png",
+                useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
                     {type: "stand", direction: "up", time: 800},
@@ -415,26 +442,33 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "rehber"},
-                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                            {type: "textMessage", text: "Hey, I'm Rehber!", faceHero: "rehber"},
+                            {type: "textMessage", text: "I am here to help and guide you in the world of competitive programming.", faceHero: "rehber"},
+                            {type: "textMessage", text: "Walk into this portal to be a part of the legendary ACM competitive team.", faceHero: "rehber"},
+
                         ]
                     },
                 ]
             }),
 
-            twitterRoute1: new Person({
-                x: utils.withGrid(31),
-                y: utils.withGrid(40),
-                src: "./images/blankGuy.png",
-                talking: [
-                    {
-                        events: [
-                            {type: "textMessage", text: "Redirecting to ACMVIT's Twitter!"},
-                            {type: "redirectPerson", link: "https://twitter.com/ACM_VIT", newTab: true},
-                        ]
-                    },
-                ]
-            }),
+            twitterPerson1: getRoute(31,40,"Twitter", "https://twitter.com/ACM_VIT"),
+            twitterPerson2: getRoute(32,40,"Twitter", "https://twitter.com/ACM_VIT"),
+            instagramPerson1: getRoute(33,41,"Instagram","https://www.instagram.com/acmvit/"),
+            instagramPerson2: getRoute(34,41,"Instagram","https://www.instagram.com/acmvit/"),
+            discordPerson1: getRoute(35,40,"Discord", "https://with.acmvit.in/discord"),
+            discordPerson2: getRoute(36,40,"Discord", "https://with.acmvit.in/discord"),
+            linkedinPerson1: getRoute(37,39,"LinkedIn", "https://www.linkedin.com/company/acm-vit/"),
+            linkedinPerson2: getRoute(38,39,"LinkedIn", "https://www.linkedin.com/company/acm-vit/"),
+            facebookPerson1: getRoute(26,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
+            facebookPerson2: getRoute(25,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
+            whatsappPerson1: getRoute(45,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+            whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+
+
+            
+
+            
+            
         },
 
         walls: {
@@ -475,8 +509,6 @@ window.OverworldMaps = {
             [utils.asGridCoord(34,63)]: [{events: rehberPath}],
             [utils.asGridCoord(35,38)]: [{events: rehberPath}],
 
-            // [utils.asGridCoord(31,41)]: [{events: [{type: "redirectPerson", link:'https://twitter.com/ACM_VIT', newTab:true}] }],
-            // [utils.asGridCoord(32,41)]: [{events: [{type: "redirectPerson", link:'https://twitter.com/ACM_VIT', newTab:true}] }],
 
 
 

@@ -32,7 +32,7 @@ class Person extends GameObject {
                 })
             }
             this.updateSprite(state);
-        }        
+        }
     }
 
     startBehavior(state, behavior) {
