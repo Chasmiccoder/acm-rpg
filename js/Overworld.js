@@ -41,7 +41,6 @@ class Overworld {
         new KeyPressListener("Enter", () => {
             // is there a person to talk to?
             this.map.checkForActionCutscene() // check for a cutscene at a specific position
-
         })
     }
 

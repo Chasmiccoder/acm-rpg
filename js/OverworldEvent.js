@@ -2,6 +2,9 @@ class OverworldEvent {
     constructor({map, event}) {
         this.map = map;
         this.event = event;
+
+        // this.link = event.link
+        // this.newTab = event.newTab;
     }
 
     init() {
@@ -77,5 +80,17 @@ class OverworldEvent {
 
             sceneTransition.fadeOut();
         });
+    }
+
+    
+    redirectPerson(resolve) {
+        let link = this.event.link;
+        let newTab = this.event.link || false;
+        if(newTab) {
+            window.open(link, '_blank');
+        } else {
+            window.open(link);
+        }
+        resolve();
     }
 }

@@ -74,6 +74,28 @@ let diyaPath = [
 let diya_cutscene_set_of_coords = [`${12*32},${38*32}`,`${13*32},${38*32}`,`${14*32},${38*32}`,`${15*32},${38*32}`,`${16*32},${38*32}`,`${17*32},${38*32}`,`${18*32},${38*32}`];
 
 
+let rehberPath = [
+    {who: "rehber", type: "walk", direction: "right"},
+    {who: "rehber", type: "walk", direction: "right"},
+    {who: "rehber", type: "walk", direction: "right"},
+    {who: "rehber", type: "walk", direction: "right"},
+    {who: "rehber", type: "walk", direction: "up"},
+    {who: "rehber", type: "walk", direction: "up"},
+
+    {who: "diya", type: "stand", direction: "up", time:500},
+    {type: "textMessage", text:"Wanna join our cool competitive team?"},
+    {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
+
+    {who: "rehber", type: "walk", direction: "left"},
+    {who: "rehber", type: "walk", direction: "down"},
+    {who: "rehber", type: "walk", direction: "down"},
+    {who: "rehber", type: "walk", direction: "left"},
+    {who: "rehber", type: "walk", direction: "left"},
+    {who: "rehber", type: "walk", direction: "left"},
+]
+
+let rehber_cutscene_set_of_coords = [`${33*32},${63*32}`, `${34*32},${63*32}`, `${35*32},${63*32}`];
+
 
 class OverworldMap {
     constructor(config) {
@@ -195,6 +217,12 @@ class OverworldMap {
             }
         }
 
+        else if(rehber_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < rehber_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[rehber_cutscene_set_of_coords[i]];
+            }
+        }
+
     }
 
     addWall(x,y) {
@@ -222,8 +250,8 @@ window.OverworldMaps = {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
-                x: utils.withGrid(15), // 15 33
-                y: utils.withGrid(33),
+                x: utils.withGrid(32), // 32 44
+                y: utils.withGrid(44),
             }),
 
             // myDrone: new Person({
@@ -374,6 +402,39 @@ window.OverworldMaps = {
                 ]
             }),
 
+            rehber: new Person({
+                x: utils.withGrid(30),
+                y: utils.withGrid(66),
+                src: "./images/brownGuy1.png",
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "rehber"},
+                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                        ]
+                    },
+                ]
+            }),
+
+            twitterRoute1: new Person({
+                x: utils.withGrid(31),
+                y: utils.withGrid(40),
+                src: "./images/blankGuy.png",
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Redirecting to ACMVIT's Twitter!"},
+                            {type: "redirectPerson", link: "https://twitter.com/ACM_VIT", newTab: true},
+                        ]
+                    },
+                ]
+            }),
         },
 
         walls: {
@@ -409,6 +470,17 @@ window.OverworldMaps = {
             [utils.asGridCoord(16,38)]: [{events: diyaPath}],
             [utils.asGridCoord(17,38)]: [{events: diyaPath}],
             [utils.asGridCoord(18,38)]: [{events: diyaPath}],
+
+            [utils.asGridCoord(33,63)]: [{events: rehberPath}],
+            [utils.asGridCoord(34,63)]: [{events: rehberPath}],
+            [utils.asGridCoord(35,38)]: [{events: rehberPath}],
+
+            // [utils.asGridCoord(31,41)]: [{events: [{type: "redirectPerson", link:'https://twitter.com/ACM_VIT', newTab:true}] }],
+            // [utils.asGridCoord(32,41)]: [{events: [{type: "redirectPerson", link:'https://twitter.com/ACM_VIT', newTab:true}] }],
+
+
+
+
 
 
 

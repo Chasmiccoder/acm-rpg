@@ -42,6 +42,12 @@ class GameObject {  // all people
         let eventConfig = this.behaviorLoop[this.behaviorLoopIndex];
         eventConfig.who = this.id;
 
+        // Event config for link teleportation
+        // eventConfig.link = this.link || '';
+        // eventConfig.newTab = this.newTab || false;
+
+        console.log(eventConfig.link);
+
         // create an event instance out of our next event config
         const eventHandler = new OverworldEvent({map, event: eventConfig});
         await eventHandler.init(); // wait until the event gets revolved
