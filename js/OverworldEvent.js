@@ -87,7 +87,7 @@ class OverworldEvent {
             // console.log("AGAIN");
             window.open(link, '_blank');
         } else {
-            window.open(link);
+            window.open(link, '_self');
         }
         resolve();
     }
