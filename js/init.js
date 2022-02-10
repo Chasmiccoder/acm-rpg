@@ -1,6 +1,6 @@
 // contains the applicant's data (used to keep track of the treasure unlocked)
 var applicantData = {
-    treasuresObtained: []
+    treasuresObtained: new Set(),
 };
 
 (function() {
@@ -9,6 +9,7 @@ var applicantData = {
         element: document.querySelector(".game-container")
     });
 
+    renderStats(); // render player statistics
     overworld.init();
 
 }) ();

@@ -518,6 +518,7 @@ window.OverworldMaps = {
             treasureBox6: getTreasureBox(43,18,6),
             treasureBox7: getTreasureBox(15,68,7),
             treasureBox8: getTreasureBox(37,50,8),
+            treasureBox9: getTreasureBox(12,2,9),
 
         },
         walls: WALLS,

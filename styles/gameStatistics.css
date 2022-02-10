@@ -1,0 +1,15 @@
+.game-statistics {
+    position: absolute;
+    padding: 5px;
+    width: 180px;
+    top: 20px;
+    left: 10px;
+    z-index: 2;
+    background-color: #dbd0c6;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#player_stats_p {
+    color: #5D5C61;
+}

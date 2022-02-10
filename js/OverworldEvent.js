@@ -79,12 +79,10 @@ class OverworldEvent {
         });
     }
 
-    
     redirectPerson(resolve) {
         let link = this.event.link;
         let newTab = this.event.newTab || false; // NOT WORKING. Always opening new tab
         if(newTab) {
-            // console.log("AGAIN");
             window.open(link, '_blank');
         } else {
             window.open(link, '_self');
@@ -94,9 +92,10 @@ class OverworldEvent {
 
     unlockTreasure(resolve) {
         let box_id = this.event.box_id;
-        // console.log("BID: ", box_id);
-        applicantData['treasuresObtained'].push(box_id);
+        // applicantData['treasuresObtained'].push(box_id);
+        applicantData['treasuresObtained'].add(box_id);
         console.log(applicantData);
+        updateStats(); // updates the top left statistics card
         resolve();
     }
 }
