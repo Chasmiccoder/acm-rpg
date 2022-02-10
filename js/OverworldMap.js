@@ -197,14 +197,14 @@ class OverworldMap {
     checkForActionCutscene() {
         const hero = this.gameObjects['hero']; // can be any of the player controlled objects
 
-        // using "" to check whether there is anyone to talk to
+        // using "Enter" to check whether there is anyone to talk to
         const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
         const match = Object.values(this.gameObjects).find(object => {
             return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
         });
 
         // if you press Enter, you'll get the match object depending on your position and direction!
-        // console.log({match});
+        console.log({match});
 
         if(!this.isCutscenePlaying && match && match.talking.length) {
             this.startCutscene(match.talking[0].events)

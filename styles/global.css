@@ -19,6 +19,38 @@ body {
     overflow: hidden;
 }
 
+.game-statistics {
+    position: absolute;
+    padding: 5px;
+    width: 180px;
+    top: 20px;
+    left: 10px;
+    z-index: 2;
+    background-color: #dbd0c6;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#player_stats_p {
+    color: #15131b;
+}
+
+/* for the "Press 'Enter' to interact!" message */
+.game-interact {
+    visibility: hidden;
+    position: absolute;
+    padding: 5px;
+    width: 180px;
+    top: 85px;
+    left: 10px;
+    z-index: 2;
+    background-color: #4ec29f;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+
 .game-container{
     position: relative;
     margin: 0;
@@ -32,3 +64,5 @@ body {
     /* Removes the blur, which occurs due to scaling */
     image-rendering: pixelated;
 }
+
+

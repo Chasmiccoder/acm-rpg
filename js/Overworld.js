@@ -59,6 +59,28 @@ class Overworld {
         this.map.mountObjects();
     }
 
+    // function that checks whether the space around an object can be interacted with
+    // renders "Press Enter to interact" message if so
+    checkInteraction() {
+        let hero = this.map.gameObjects.hero;
+        const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
+        const match = Object.values(this.map.gameObjects).find(object => {
+            return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
+        });
+        console.log({match});
+
+        let interact_p = document.querySelector(".game-interact");
+        
+        if(match) {
+            // console.log("MATCHED");
+            interact_p.style.visibility = "visible"
+        } else {
+            // make it hidden again
+            // console.log("NOT");
+            interact_p.style.visibility = "hidden"
+        }
+    }
+
     startGameLoop() {
         const step = () => {
 
@@ -87,6 +109,10 @@ class Overworld {
             }).forEach( object => {
                 object.sprite.draw(this.context, cameraPerson);
             })
+
+            this.checkInteraction();
+
+            
 
             // this.map.drawUpperImage(this.context, cameraPerson);
 

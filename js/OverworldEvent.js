@@ -27,10 +27,6 @@ class OverworldEvent {
             }
         }
         document.addEventListener("PersonStandComplete", completeHandler);
-
-
-
-
     }
 
     walk(resolve) {
