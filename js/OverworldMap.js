@@ -266,8 +266,8 @@ window.OverworldMaps = {
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
                 useShadow: true,
-                x: utils.withGrid(5), // 32 44
-                y: utils.withGrid(35),
+                x: utils.withGrid(28), // 32 44
+                y: utils.withGrid(32),
             }),
 
             npcA: new Person({
