@@ -115,8 +115,24 @@ const getRoute = (x,y, name, link) =>{
     return route;
 }
 
-
-
+const getTreasureBox = (x,y,box_id) => {
+    let box = new Person({
+        x: utils.withGrid(x),
+        y: utils.withGrid(y),
+        src: "./images/blankGuy.png",
+        useShadow:false,
+        talking: [
+            {
+                events: [
+                    {type: "textMessage", text: `Secret Treasure Unlocked!`},
+                    {type: "unlockTreasure", box_id:box_id},
+                    // {type: "redirectPerson", link: link, newTab: true},
+                ]
+            },
+        ]
+    });
+    return box;
+}
 
 class OverworldMap {
     constructor(config) {
@@ -259,14 +275,14 @@ class OverworldMap {
 
 window.OverworldMaps = {
     DemoRoom: {
-        lowerSrc: "./images/FINAL_FOR_REALZ_.png", // current best map is= ./images/official_assets/ourMap32.png
+        lowerSrc: "./images/acmrpg.png", // current best map is= ./images/official_assets/ourMap32.png
         // upperSrc: "./images/blank_guy.png",
         gameObjects: {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
                 useShadow: true,
-                x: utils.withGrid(28), // 32 44
+                x: utils.withGrid(28), // Starting point: 28,32
                 y: utils.withGrid(32),
             }),
 
@@ -493,6 +509,15 @@ window.OverworldMaps = {
             facebookPerson2: getRoute(25,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
             whatsappPerson1: getRoute(45,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
             whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+
+            treasureBox1: getTreasureBox(21,47,1),
+            treasureBox2: getTreasureBox(-2,37,2),
+            treasureBox3: getTreasureBox(44,32,3),
+            treasureBox4: getTreasureBox(32,19,4),
+            treasureBox5: getTreasureBox(26,19,5),
+            treasureBox6: getTreasureBox(43,18,6),
+            treasureBox7: getTreasureBox(15,68,7),
+            treasureBox8: getTreasureBox(37,50,8),
 
         },
         walls: WALLS,

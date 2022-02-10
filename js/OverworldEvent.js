@@ -82,13 +82,21 @@ class OverworldEvent {
     
     redirectPerson(resolve) {
         let link = this.event.link;
-        let newTab = this.event.newTab || false;
+        let newTab = this.event.newTab || false; // NOT WORKING. Always opening new tab
         if(newTab) {
-            console.log("AGAIN");
+            // console.log("AGAIN");
             window.open(link, '_blank');
         } else {
             window.open(link);
         }
+        resolve();
+    }
+
+    unlockTreasure(resolve) {
+        let box_id = this.event.box_id;
+        // console.log("BID: ", box_id);
+        applicantData['treasuresObtained'].push(box_id);
+        console.log(applicantData);
         resolve();
     }
 }
