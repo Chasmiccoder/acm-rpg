@@ -139,8 +139,6 @@ class OverworldMap {
     }
 
     drawLowerImage(context, cameraPerson) {
-        // context.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
-        // context.drawImage(this.lowerImage, utils.withGrid(10.33) - cameraPerson.x, utils.withGrid(6.5) - cameraPerson.y); // fixing offset
         context.drawImage(this.lowerImage, utils.withGrid(10.40) - cameraPerson.x, utils.withGrid(6.7) - cameraPerson.y);
     }
 
@@ -157,8 +155,6 @@ class OverworldMap {
         Object.keys(this.gameObjects).forEach( key => {
             let object = this.gameObjects[key];
             object.id = key;
-
-            // TODO: determine if this object should be mounted or not
             object.mount(this);
         })
     }
@@ -264,28 +260,16 @@ class OverworldMap {
 window.OverworldMaps = {
     DemoRoom: {
         lowerSrc: "./images/FINAL_FOR_REALZ_.png", // current best map is= ./images/official_assets/ourMap32.png
-        // lowerSrc: "./images/ourMap16.png",
-        // lowerSrc: "./images/DemoLower.png",
         // upperSrc: "./images/blank_guy.png",
         gameObjects: {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
                 useShadow: true,
-                x: utils.withGrid(15), // 32 44
-                y: utils.withGrid(20),
+                x: utils.withGrid(5), // 32 44
+                y: utils.withGrid(35),
             }),
 
-            // myDrone: new Person({
-            //     x: utils.withGrid(8),
-            //     y: utils.withGrid(8),
-            //     src: "./images/myDrone.png",
-            //     animations: { // these values are according to the drone's spritesheet
-            //         "spinning": [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7]]
-            //     },
-            //     currentAnimation: "spinning",
-            // }),
-            
             npcA: new Person({
                 x: utils.withGrid(19),
                 y: utils.withGrid(9),
@@ -308,38 +292,6 @@ window.OverworldMaps = {
                     },
                 ],
             }),
-            //         // saying a different thing later
-            //         // {
-            //         //     events: [
-            //         //         {type: "textMessage", text: "Congrats on beating that boss!"}
-            //         //     ]
-            //         // }
-            //     ]
-            // }),
-
-            // npcB: new Person({
-            //     x: utils.withGrid(8),
-            //     y: utils.withGrid(5),
-            //     src: "./images/brownGuy1.png",
-            //     behaviorLoop: [
-            //         {type: "walk", direction: "left"},
-            //         // {type: "stand", direction: "left", time: 800},
-            //         {type: "walk", direction: "up"},
-            //         {type: "walk", direction: "right"},
-            //         {type: "walk", direction: "down"},
-            //     ],
-            //     talking: [
-            //         {
-            //             // defined this way so that people can say different things, at different points in time
-            //             events: [
-            //                 {type: "textMessage", text: "It's about drive, it's about power", faceHero: "hemanth"},
-            //                 {type: "textMessage", text: "We stay hungry, we devour!"},
-            //                 // {who: "hero", type: "walk", direction: "left"}
-            //             ]
-            //         },
-            //     ]
-            // }),
-
 
             hemanth: new Person({
                 x: utils.withGrid(2),
@@ -357,8 +309,9 @@ window.OverworldMaps = {
                         // defined this way so that people can say different things, at different points in time
                         events: [
                             // independent event where Hemanth gets to say what he wants
-                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "hemanth"},
-                            {type: "textMessage", text: "We stay hungry, we devour!"},
+                            {type: "textMessage", text: "what xD", faceHero: "hemanth"},
+                            {type: "textMessage", text: "sup, nothing to stalk here"},
+                            {type: "textMessage", text: "xD"},
                         ]
                     },
                 ]
@@ -378,14 +331,12 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            // independent event where Dhriti gets to say what he wants
                             {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
                             {type: "textMessage", text: "We stay hungry, we devour!"},
                         ]
                     },
                 ]
             }),
-
 
             diya: new Person({
                 x: utils.withGrid(16),
@@ -445,7 +396,86 @@ window.OverworldMaps = {
                             {type: "textMessage", text: "Hey, I'm Rehber!", faceHero: "rehber"},
                             {type: "textMessage", text: "I am here to help and guide you in the world of competitive programming.", faceHero: "rehber"},
                             {type: "textMessage", text: "Walk into this portal to be a part of the legendary ACM competitive team.", faceHero: "rehber"},
+                        ]
+                    },
+                ]
+            }),
 
+            rishabh: new Person({
+                x: utils.withGrid(32),
+                y: utils.withGrid(13),
+                src: "./images/rishabh.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Let me give you a tour of our events", faceHero: "rishabh"},
+                            {who: "hero", type: "walk", direction: "right"},
+                            {who: "hero", type: "walk", direction: "up"},
+                            {who: "hero", type: "walk", direction: "right"},
+                            {who: "hero", type: "walk", direction: "right"},
+                            {who: "hero", type: "walk", direction: "right"},
+                            {who: "hero", type: "walk", direction: "right"},
+                            {who: "hero", type: "walk", direction: "right"},
+                            {who: "hero", type: "walk", direction: "up"},
+                            {who: "hero", type: "stand", direction: "left", time:200},
+                            {who: "rishabh", type: "walk", direction: "up"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "up"},
+                            {who: "rishabh", type: "walk", direction: "up"},
+                            {who: "rishabh", type: "walk", direction: "up"},
+                            {who: "rishabh", type: "stand", direction: "right", time:200},
+                            {type: "textMessage", text: "This is our app centric hackathon, Apptitude,"},
+                            {type: "textMessage", text: "We gave away over 50k in cash prizes xD"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {type: "textMessage", text: "This is Reverse Coding, our competitive coding event with a twist"},
+                            {type: "textMessage", text: "which got over 2800 participants!"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "up"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "stand", direction: "up", time:200},
+                            {who: "hero", type: "stand", direction: "up", time:200},
+                            {type: "textMessage", text: "This is Code2Create, our flagship hackathon,"},
+                            {type: "textMessage", text: "Where participants from all over the world compete to win."},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "down"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "walk", direction: "right"},
+                            {who: "rishabh", type: "stand", direction: "up", time:200},
+                            {who: "hero", type: "stand", direction: "right", time:200},
+                            {type: "textMessage", text: "In ACM Bootcamp,"},
+                            {type: "textMessage", text: "we introduced newcomers to our domains through many mini projects!"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "down"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "stand", direction: "left", time:200},
+                            {type: "textMessage", text: "It's fun being a participant,"},
+                            {type: "textMessage", text: "however, it's even better being an organizer."},
+                            {type: "textMessage", text: "If you choose to join ACMVIT you'll get to learn and grow as person :)"},
+
+                            {who: "rishabh", type: "walk", direction: "down"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "left"},
+                            {who: "rishabh", type: "walk", direction: "down"},
+                            {who: "rishabh", type: "walk", direction: "down"},
+                            {who: "rishabh", type: "stand", direction: "up", time:200},
                         ]
                     },
                 ]
@@ -464,11 +494,6 @@ window.OverworldMaps = {
             whatsappPerson1: getRoute(45,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
             whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
 
-
-            
-
-            
-            
         },
         walls: WALLS,
         cutsceneSpaces: {
@@ -503,73 +528,41 @@ window.OverworldMaps = {
             [utils.asGridCoord(34,63)]: [{events: rehberPath}],
             [utils.asGridCoord(35,38)]: [{events: rehberPath}],
 
+            [utils.asGridCoord(14,5)]: [
+                {
+                    events: [
+                        {type: "textMessage", text: "Redirecting to the Technical Form!"},
+                        {type: "redirectPerson", link: "./technical"},
+                    ]
+                }
+            ],
 
+            [utils.asGridCoord(27,68)]: [
+                {
+                    events: [
+                        {type: "textMessage", text: "Redirecting to the Competitive Coding Form!"},
+                        {type: "redirectPerson", link: "./competitive"},
+                    ]
+                }
+            ],
 
+            [utils.asGridCoord(-2,31)]: [
+                {
+                    events: [
+                        {type: "textMessage", text: "Redirecting to the Design Form!"},
+                        {type: "redirectPerson", link: "./design"},
+                    ]
+                }
+            ],
 
-
-
-
-
-
-
-
-
-            // [utils.asGridCoord(5,10)]: [
-            //     {
-            //         events: [
-            //             {type: "changeMap", map: "Kitchen"} // gets referenced in OverworldEvent
-            //         ]
-            //     }
-            // ]
-            // [utils.asGridCoord(7,4)]: [
-            //     // doing it this way so that for example if you step on a cutscene space
-            //     // and if the cutscene gets over, then the same cutscene should not play when you step on the same tile again
-            //     {
-            //         events: [
-            //             {who: "npcB", type: "walk", direction: "left"},
-            //             {who: "npcB", type: "stand", direction: "up", time:500},
-            //             {type: "textMessage", text: "You can't be in there!"},
-            //             {who: "npcB", type: "walk", direction: "right"},
-            //             {who: "hero", type: "walk", direction: "down"},
-            //             {who: "hero", type: "walk", direction: "left"},
-            //         ]
-            //     }
-            // ],
-            // [utils.asGridCoord(5,10)]: [
-            //     {
-            //         events: [
-            //             {type: "changeMap", map: "Kitchen"} // gets referenced in OverworldEvent
-            //         ]
-            //     }
-            // ]
-            
-        }
-    },
-
-    Kitchen: {
-        lowerSrc: "./images/KitchenLower.png",
-        // upperSrc: "./images/KitchenUpper.png",
-        gameObjects: {
-            hero: new Person({
-                isPlayerControlled: true,
-                x: utils.withGrid(5),
-                y: utils.withGrid(5),
-            }),
-
-            npcB: new Person({
-                x: utils.withGrid(10),
-                y: utils.withGrid(8),
-                src: "./images/npc2.png",
-                talking: [
-                    {
-                        events: [
-                            {type: "textMessage", text: "You made it!", faceHero: "npcB"}
-                        ]
-                    }
-                ]
-            }),
-
-
+            [utils.asGridCoord(6,44)]: [
+                {
+                    events: [
+                        {type: "textMessage", text: "Redirecting to the Management Form!"},
+                        {type: "redirectPerson", link: "./management"},
+                    ]
+                }
+            ],
         }
     },
 }

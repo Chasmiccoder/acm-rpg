@@ -2,9 +2,6 @@ class OverworldEvent {
     constructor({map, event}) {
         this.map = map;
         this.event = event;
-
-        // this.link = event.link
-        // this.newTab = event.newTab;
     }
 
     init() {
@@ -85,8 +82,9 @@ class OverworldEvent {
     
     redirectPerson(resolve) {
         let link = this.event.link;
-        let newTab = this.event.link || false;
+        let newTab = this.event.newTab || false;
         if(newTab) {
+            console.log("AGAIN");
             window.open(link, '_blank');
         } else {
             window.open(link);
