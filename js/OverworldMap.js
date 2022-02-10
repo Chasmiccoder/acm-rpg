@@ -129,7 +129,7 @@ class OverworldMap {
         this.walls = config.walls || {};
 
         this.lowerImage = new Image();
-        // this.upperImage = new Image();
+        this.upperImage = new Image();
         
         this.lowerImage.src = config.lowerSrc; // floor
         // this.upperImage.src = config.upperSrc; // what is rendered above the floor (above the player) like tree tops
@@ -266,14 +266,14 @@ window.OverworldMaps = {
         lowerSrc: "./images/FINAL_FOR_REALZ_.png", // current best map is= ./images/official_assets/ourMap32.png
         // lowerSrc: "./images/ourMap16.png",
         // lowerSrc: "./images/DemoLower.png",
-        // upperSrc: "./images/DemoUpper.png",
+        // upperSrc: "./images/blank_guy.png",
         gameObjects: {
             hero: new Person({
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
                 useShadow: true,
-                x: utils.withGrid(32), // 32 44
-                y: utils.withGrid(44),
+                x: utils.withGrid(15), // 32 44
+                y: utils.withGrid(20),
             }),
 
             // myDrone: new Person({
@@ -470,13 +470,7 @@ window.OverworldMaps = {
             
             
         },
-
-        walls: {
-            // [utils.asGridCoord(7,6)]: true,
-            // [utils.asGridCoord(8,6)]: true,
-            // [utils.asGridCoord(7,7)]: true,
-            // [utils.asGridCoord(8,7)]: true,
-        },
+        walls: WALLS,
         cutsceneSpaces: {
             [utils.asGridCoord(10,9)]: [{events: hemanthPath}],
             [utils.asGridCoord(11,9)]: [{events: hemanthPath}],
