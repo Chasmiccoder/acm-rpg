@@ -48,16 +48,30 @@ const getCutsceneSetOfCoords = (coordinateList) => {
 // current person
 let X = "hemanth";
 let hemanthPath = [
-    walkRight(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),
-    standRight(X,500),
-    {type: "textMessage", text: "Are you up for applying to the technical department?"},
-    {type: "textMessage", text: "If so, enter the portal's center!"},
-    walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),
+    walkRight(X),walkRight(X),walkDown(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),standRight(X,200),
+    {type: "textMessage", text: "Are you up for applying to the App Domain?"},
+    {type: "textMessage", text: "If so, enter the portal!"},
+    walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),walkLeft(X),walkUp(X),walkLeft(X),walkLeft(X),standRight(X,200),    
 ]
 
 // hemanth's cutscene's set of coordinates
-let hemanth_cutscene_set_of_coords_raw = [[10,9],[11,9],[12,9],[13,9],[14,9],[15,9],[16,9],[17,9],[18,9],[19,9]] // raw == tile format and not in pixel format
+// raw == tile format and not in pixel format
+let hemanth_cutscene_set_of_coords_raw = [[11,11],[11,10],[11,9],[11,8],[10,8],[11,12],[11,13],[11,14],[10,14]]
 let hemanth_cutscene_set_of_coords = getCutsceneSetOfCoords(hemanth_cutscene_set_of_coords_raw); // pixel format
+
+X = "yash";
+let yashPath = [
+    walkLeft(X),walkUp(X),walkLeft(X),walkLeft(X),walkLeft(X),standDown(X,200),
+    {type: "textMessage", text: "Are you up for applying to the General Technical Domain?"},
+    {type: "textMessage", text: "If so, enter the portal!"},
+    walkRight(X),walkRight(X),walkRight(X),walkDown(X),walkRight(X),standLeft(X,200),
+]
+
+let yash_cutscene_set_of_coords_raw = [[10,9],[11,9],[12,9],[13,9],[14,9],[15,9],[16,9],[17,9],[18,9],[19,9]] 
+let yash_cutscene_set_of_coords = getCutsceneSetOfCoords(yash_cutscene_set_of_coords_raw);
+
+
+
 
 X = "dhriti";
 let dhritiPath = [
@@ -65,8 +79,8 @@ let dhritiPath = [
     standRight(X,500),
     {type: "textMessage", text: "Are you good looking?"},
     {type: "textMessage", text: "Of course you are!"},
-    {type: "textMessage", text: "But we want people that can make things that are good looking..."},
-    {type: "textMessage", text: "If you're interested, enter the portal's center!"},
+    {type: "textMessage", text: "But we want people that can make things look good..."},
+    {type: "textMessage", text: "If you're interested, enter the portal!"},
     walkLeft(X), walkLeft(X), walkLeft(X),
     walkLeft(X),walkUp(X),walkLeft(X),walkUp(X),
 ]
@@ -79,7 +93,7 @@ let diyaPath = [
     walkUp(X),walkLeft(X),walkUp(X),walkUp(X),walkUp(X),
     standUp(X,500),
     {type: "textMessage", text:"Will you be able to manage management, while having a great social life?"},
-    {type: "textMessage", text: "If so, enter the portal center to apply!"},
+    {type: "textMessage", text: "If so, enter the portal!"},
     walkRight(X),walkDown(X),walkDown(X),walkDown(X),walkDown(X),
 ]
 
@@ -91,7 +105,7 @@ let rehberPath = [
     walkRight(X),walkRight(X),walkRight(X),walkRight(X),walkUp(X),walkUp(X),
     standUp(X,500),
     {type: "textMessage", text:"Wanna join our cool competitive team?"},
-    {type: "textMessage", text: "If so, enter the portal's center!"},
+    {type: "textMessage", text: "If so, enter the portal!"},
     walkLeft(X),walkDown(X),walkDown(X),walkLeft(X),walkLeft(X),walkLeft(X),
 ]
 
@@ -103,8 +117,8 @@ let rehber_cutscene_set_of_coords = getCutsceneSetOfCoords(rehber_cutscene_set_o
 X = "vinamra";
 let vinamraPath = [
     walkDown(X),walkLeft(X),walkLeft(X),walkLeft(X),standLeft(X,200),
-    {type: "textMessage", text:"In the Research domain we work on cool, nonstandard technologies..."},
-    {type: "textMessage", text:"If you have a curious mindset, fill the research form!"},
+    {type: "textMessage", text:"In the Research Domain we work on cool, novel technologies..."},
+    {type: "textMessage", text:"If you have a curious mindset, fill the Research form!"},
     walkRight(X),walkRight(X),walkRight(X),walkUp(X),standDown(X,200),
 ]
 
@@ -116,7 +130,7 @@ let vinamra_cutscene_set_of_coords = getCutsceneSetOfCoords(vinamra_cutscene_set
 X = "shreyas"
 let shreyasPath = [
     walkDown(X),standRight(X,200),
-    {type: "textMessage", text:"To join our awesome web domain, hop into this portal you see ahead!"},
+    {type: "textMessage", text:"To join our awesome Web Domain, hop onto the portal ahead!"},
     walkUp(X),standRight(X,200),
 ]
 
@@ -127,7 +141,11 @@ let shreyas_cutscene_set_of_coords = getCutsceneSetOfCoords(shreyas_cutscene_set
 X = "sumona"
 let sumonaPath = [
     walkUp(X),walkRight(X),walkRight(X),walkRight(X),walkUp(X),standUp(X,200),
-    {type: "textMessage", text:"Welcome Message!"},
+    {type: "textMessage", text:"Welcome to ACM-RPG!"},
+    {type: "textMessage", text:"Thank you for hopping in."},
+    {type: "textMessage", text:"Make sure you check out all the domains we have to offer."},
+    {type: "textMessage", text:"We hope you have fun while applying to ACMVIT"},
+    {type: "textMessage", text:"Best of luck!"},
     walkDown(X),walkLeft(X),walkLeft(X),walkLeft(X),walkDown(X),standUp(X,200),
 ];
 

@@ -58,6 +58,7 @@ let allCutsceneSpaces = {
     ...generateCutsceneSpaces(vinamra_cutscene_set_of_coords_raw, vinamraPath),
     ...generateCutsceneSpaces(shreyas_cutscene_set_of_coords_raw, shreyasPath),
     ...generateCutsceneSpaces(sumona_cutscene_set_of_coords_raw, sumonaPath),
+    ...generateCutsceneSpaces(yash_cutscene_set_of_coords_raw, yashPath),
 };
 
 // All redirects to other urls (also triggered by footsteps)
@@ -69,6 +70,33 @@ let allRedirects = {
             events: [
                 {type: "textMessage", text: "Redirecting to the General Technical domain's form!"},
                 {type: "redirectPerson", link: "./general_technical"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(25,21)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Research Domain's form!"},
+                {type: "redirectPerson", link: "./research"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(3,21)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Web Domain's form!"},
+                {type: "redirectPerson", link: "./web"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(3,11)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the App Domain's form!"},
+                {type: "redirectPerson", link: "./app"},
             ]
         }
     ],
@@ -86,19 +114,37 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the UI/UX Form!"},
-                {type: "redirectPerson", link: "./design"},
+                {type: "redirectPerson", link: "./designUIUX"},
             ]
         }
     ],
 
-    // [utils.asGridCoord(-2,31)]: [
-    //     {
-    //         events: [
-    //             {type: "textMessage", text: "Redirecting to the UI/UX Form!"},
-    //             {type: "redirectPerson", link: "./design"},
-    //         ]
-    //     }
-    // ],
+    [utils.asGridCoord(-3,37)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Graphic Design Form!"},
+                {type: "redirectPerson", link: "./designGraphic"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(-3,43)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Motion Design Form!"},
+                {type: "redirectPerson", link: "./designMotion"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(-3,37)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Graphic Design Form!"},
+                {type: "redirectPerson", link: "./designGraphic"},
+            ]
+        }
+    ],
 
 
 
@@ -249,6 +295,12 @@ class OverworldMap {
                 delete this.cutsceneSpaces[sumona_cutscene_set_of_coords[i]];
             }
         }
+
+        else if(yash_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < yash_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[yash_cutscene_set_of_coords[i]];
+            }
+        }
     }
 
     addWall(x,y) {
@@ -276,13 +328,13 @@ window.OverworldMaps = {
                 src: "./images/Hero.png",
                 useShadow: true,
                 x: utils.withGrid(28), // Starting point: 28,31
-                y: utils.withGrid(31),// -3,37
+                y: utils.withGrid(31),
             }),
 
-            npcA: new Person({
-                x: utils.withGrid(19),
-                y: utils.withGrid(9),
-                src: "./images/brownGuy1.png",
+            yash: new Person({
+                x: utils.withGrid(18),
+                y: utils.withGrid(8),
+                src: "./images/yash.png",
                 useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
@@ -294,9 +346,8 @@ window.OverworldMaps = {
                     {
                         // defined this way so that people can say different things, at different points in time
                         events: [
-                            {type: "textMessage", text: "I'm busy...", faceHero: "npcA"},
-                            {type: "textMessage", text: "Go away!"},
-                            // {who: "hero", type: "walk", direction: "left"}
+                            {type: "textMessage", text: "Yash: Young men, listen to the old man,", faceHero: "yash"},
+                            {type: "textMessage", text: "to whom the old man heard, when he was young.", faceHero: "yash"},
                         ]
                     },
                 ],
@@ -304,7 +355,7 @@ window.OverworldMaps = {
 
             hemanth: new Person({
                 x: utils.withGrid(2),
-                y: utils.withGrid(10),
+                y: utils.withGrid(9),
                 src: "./images/brownGuy1.png",
                 useShadow: true,
                 behaviorLoop: [
@@ -318,8 +369,8 @@ window.OverworldMaps = {
                         // defined this way so that people can say different things, at different points in time
                         events: [
                             // independent event where Hemanth gets to say what he wants
-                            {type: "textMessage", text: "what xD", faceHero: "hemanth"},
-                            {type: "textMessage", text: "sup, nothing to stalk here"},
+                            {type: "textMessage", text: "Hemanth: Hi", faceHero: "hemanth"},
+                            {type: "textMessage", text: "Nothing to stalk here"},
                             {type: "textMessage", text: "xD"},
                         ]
                     },
@@ -340,9 +391,8 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
-                            {type: "textMessage", text: "We stay hungry, we devour!"},
-                        ]   
+                            {type: "textMessage", text: "Dhriti: Design helps me relax", faceHero: "dhriti"},
+                        ]
                     },
                 ]
             }),
@@ -361,7 +411,7 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "Don't make a Diya joke around me", faceHero: "diya"},
+                            {type: "textMessage", text: "Diya: Don't make a Diya joke around me", faceHero: "diya"},
                         ]
                     },
                 ]
@@ -381,8 +431,8 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "Am I Ishi?", faceHero: "ishi"},
-                            {type: "textMessage", text: "Or any boring person?"},
+                            {type: "textMessage", text: "Ishi: Hi I'm Ishi", faceHero: "ishi"},
+                            {type: "textMessage", text: "And that's NOT my nickname"},
                         ]
                     },
                 ]
@@ -402,7 +452,7 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "Hey, I'm Rehber!", faceHero: "rehber"},
+                            {type: "textMessage", text: "Rehber: Hey, I'm Rehber!", faceHero: "rehber"},
                             {type: "textMessage", text: "I am here to help and guide you in the world of competitive programming.", faceHero: "rehber"},
                             {type: "textMessage", text: "Walk into this portal to be a part of the legendary ACM competitive team.", faceHero: "rehber"},
                         ]
@@ -424,22 +474,22 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [  // A tour of ACM's events
-                            {type: "textMessage", text: "Let me give you a tour of our events", faceHero: "rishabh"},
+                            {type: "textMessage", text: "Rishabh: Let me give you a tour of our events", faceHero: "rishabh"},
                             walkRight("hero"),walkUp("hero"),walkRight("hero"),walkRight("hero"),walkRight("hero"),walkRight("hero"),walkRight("hero"),
                             walkUp("hero"),standLeft("hero",200),
 
                             walkUp("rishabh"),walkLeft("rishabh"),walkUp("rishabh"),walkUp("rishabh"),walkUp("rishabh"),standRight("rishabh",200),                            
                             {type: "textMessage", text: "This is our app centric hackathon, Apptitude,"},
-                            {type: "textMessage", text: "Where we gave away over 50k in cash prizes :D"},
+                            {type: "textMessage", text: "in which we gave away over 50k in cash prizes :D"},
                             
                             walkRight("rishabh"),walkRight("rishabh"),
-                            {type: "textMessage", text: "This is Reverse Coding, our competitive coding event with a twist"},
+                            {type: "textMessage", text: "This is Reverse Coding, our competitive coding event with a twist,"},
                             {type: "textMessage", text: "which got over 2800 participants this year!"},
 
                             walkRight("rishabh"),walkRight("rishabh"),walkUp("rishabh"),walkRight("rishabh"),walkRight("rishabh"),
                             standUp("rishabh",200),standUp("hero",200),
-                            {type: "textMessage", text: "This is Code2Create, our flagship hackathon,"},
-                            {type: "textMessage", text: "Where participants from all over the world compete to win."},
+                            {type: "textMessage", text: "This is Code2Create, our flagship event."},
+                            {type: "textMessage", text: "It is one of VIT's biggest hackathons, where students all across India compete to win."},
                             
                             walkRight("rishabh"),walkRight("rishabh"),walkDown("rishabh"),walkRight("rishabh"),walkRight("rishabh"),walkRight("rishabh"),
                             standUp("rishabh",200),standRight("hero",200),
@@ -473,7 +523,9 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "vinamra"},
+                            {type: "textMessage", text: "Vinamra: Howdy", faceHero: "vinamra"},
+                            {type: "textMessage", text: "I've always loved being in ACMVIT", faceHero: "vinamra"},
+                            {type: "textMessage", text: "I hope you join us too!", faceHero: "vinamra"},
                         ]
                     },
                 ]
@@ -493,8 +545,8 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "Shh, I got social anxiety...", faceHero: "shreyas"},
-                            {type: "textMessage", text: "P.S: Why don't you give the web domain a try though?", faceHero: "shreyas"},
+                            {type: "textMessage", text: "Shreyas: Shh, I got social anxiety...", faceHero: "shreyas"},
+                            {type: "textMessage", text: "P.S: Why don't you give the Web Domain a try though?", faceHero: "shreyas"},
                         ]
                     },
                 ]
@@ -511,7 +563,7 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "Dwayne: It's about drive, it's about power", faceHero: "theRock"},
+                            {type: "textMessage", text: "The Rock: It's about drive, it's about power", faceHero: "theRock"},
                             {type: "textMessage", text: "We stay hungry, we devour!", faceHero: "theRock"},
                             {type: "textMessage", text: "Put in the work, put in the hour", faceHero: "theRock"},
                             {type: "textMessage", text: "To take what's ours!!", faceHero: "theRock"},
@@ -534,7 +586,30 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "sumona"},
+                            {type: "textMessage", text: "Sumona: Your path you must decide, young Padawan", faceHero: "sumona"},
+                            {type: "textMessage", text: "That was my only Star Wars quote!", faceHero: "sumona"},
+
+                        ]
+                    },
+                ]
+            }),
+
+            ananya: new Person({
+                x: utils.withGrid(0),
+                y: utils.withGrid(22),
+                src: "./images/ananya.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "up", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Ananya: Hey!", faceHero: "ananya"},
+                            {type: "textMessage", text: "Your DOM looks good from <head> to </footer>", faceHero: "ananya"},
                         ]
                     },
                 ]
