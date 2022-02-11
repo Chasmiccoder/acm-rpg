@@ -1,5 +1,5 @@
 // for redirects to Twitter, Instagram, etc
-const getRoute = (x,y, name, link) =>{
+const getRoute = (x,y, name, link) => {
     let route = new Person({
         x: utils.withGrid(x),
         y: utils.withGrid(y),
@@ -51,7 +51,6 @@ const generateCutsceneSpaces = (person_cutscene_set_of_coords_raw, personPath) =
 
 // contains the footstep triggered cutscenes for all events in the game
 let allCutsceneSpaces = {
-    
     ...generateCutsceneSpaces(hemanth_cutscene_set_of_coords_raw, hemanthPath),
     ...generateCutsceneSpaces(dhriti_cutscene_set_of_coords_raw, dhritiPath),
     ...generateCutsceneSpaces(diya_cutscene_set_of_coords_raw, diyaPath),
@@ -59,19 +58,17 @@ let allCutsceneSpaces = {
     ...generateCutsceneSpaces(vinamra_cutscene_set_of_coords_raw, vinamraPath),
     ...generateCutsceneSpaces(shreyas_cutscene_set_of_coords_raw, shreyasPath),
     ...generateCutsceneSpaces(sumona_cutscene_set_of_coords_raw, sumonaPath),
-
-    // TODO
-    // [utils.asGridCoord(10,17)]: [{events: shreyasPath}],
-    // [utils.asGridCoord(11,17)]: [{events: shreyasPath}],
 };
 
 // All redirects to other urls (also triggered by footsteps)
 let allRedirects = {
+    // REFACTOR
+
     [utils.asGridCoord(14,5)]: [
         {
             events: [
-                {type: "textMessage", text: "Redirecting to the Technical Form!"},
-                {type: "redirectPerson", link: "./technical"},
+                {type: "textMessage", text: "Redirecting to the General Technical domain's form!"},
+                {type: "redirectPerson", link: "./general_technical"},
             ]
         }
     ],
@@ -88,11 +85,22 @@ let allRedirects = {
     [utils.asGridCoord(-2,31)]: [
         {
             events: [
-                {type: "textMessage", text: "Redirecting to the Design Form!"},
+                {type: "textMessage", text: "Redirecting to the UI/UX Form!"},
                 {type: "redirectPerson", link: "./design"},
             ]
         }
     ],
+
+    // [utils.asGridCoord(-2,31)]: [
+    //     {
+    //         events: [
+    //             {type: "textMessage", text: "Redirecting to the UI/UX Form!"},
+    //             {type: "redirectPerson", link: "./design"},
+    //         ]
+    //     }
+    // ],
+
+
 
     [utils.asGridCoord(6,44)]: [
         {
@@ -268,7 +276,7 @@ window.OverworldMaps = {
                 src: "./images/Hero.png",
                 useShadow: true,
                 x: utils.withGrid(28), // Starting point: 28,31
-                y: utils.withGrid(31),
+                y: utils.withGrid(31),// -3,37
             }),
 
             npcA: new Person({
@@ -531,7 +539,6 @@ window.OverworldMaps = {
                     },
                 ]
             }),
-
 
             twitterPerson1: getRoute(31,40,"Twitter", "https://twitter.com/ACM_VIT"),
             twitterPerson2: getRoute(32,40,"Twitter", "https://twitter.com/ACM_VIT"),
