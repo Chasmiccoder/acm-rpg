@@ -1,3 +1,4 @@
+// critical walls added and removed, so change this with care
 const WALLS = {
     [utils.asGridCoord(12,2)]: true,
     [utils.asGridCoord(13,2)]: true,
@@ -554,4 +555,11 @@ const WALLS = {
     [utils.asGridCoord(24,72)]: true,
     [utils.asGridCoord(25,72)]: true,
     [utils.asGridCoord(26,72)]: true,
+
+    [utils.asGridCoord(17,44)]: true,
+    [utils.asGridCoord(17,45)]: true,
+    [utils.asGridCoord(18,45)]: true,
+    [utils.asGridCoord(19,45)]: true,
+    [utils.asGridCoord(20,45)]: true,
+    [utils.asGridCoord(21,45)]: true,
 };

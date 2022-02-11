@@ -9,7 +9,7 @@ class Overworld {
         // this.gameContainer.style.width = window.innerWidth;
         // this.gameContainer.style.height = window.innerHeight;
 
-        console.log(this.canvas.width, this.canvas.height);
+        // console.log(this.canvas.width, this.canvas.height);
 
         this.context = this.canvas.getContext("2d");
         this.map = null;
@@ -64,7 +64,7 @@ class Overworld {
         const match = Object.values(this.map.gameObjects).find(object => {
             return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
         });
-        console.log({match});
+        // console.log({match});
 
         let interact_p = document.querySelector(".game-interact");
         

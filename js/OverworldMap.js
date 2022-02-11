@@ -57,6 +57,8 @@ let allCutsceneSpaces = {
     ...generateCutsceneSpaces(diya_cutscene_set_of_coords_raw, diyaPath),
     ...generateCutsceneSpaces(rehber_cutscene_set_of_coords_raw, rehberPath),
     ...generateCutsceneSpaces(vinamra_cutscene_set_of_coords_raw, vinamraPath),
+    ...generateCutsceneSpaces(shreyas_cutscene_set_of_coords_raw, shreyasPath),
+    ...generateCutsceneSpaces(sumona_cutscene_set_of_coords_raw, sumonaPath),
 
     // TODO
     // [utils.asGridCoord(10,17)]: [{events: shreyasPath}],
@@ -172,7 +174,7 @@ class OverworldMap {
         });
 
         // if you press Enter, you'll get the match object depending on your position and direction!
-        console.log({match});
+        // console.log({match});
 
         if(!this.isCutscenePlaying && match && match.talking.length) {
             this.startCutscene(match.talking[0].events)
@@ -228,8 +230,17 @@ class OverworldMap {
             }
         }
 
-        
+        else if(shreyas_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < shreyas_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[shreyas_cutscene_set_of_coords[i]];
+            }
+        }
 
+        else if(sumona_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < sumona_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[sumona_cutscene_set_of_coords[i]];
+            }
+        }
     }
 
     addWall(x,y) {
@@ -256,8 +267,8 @@ window.OverworldMaps = {
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
                 useShadow: true,
-                x: utils.withGrid(15), // Starting point: 28,32
-                y: utils.withGrid(24),
+                x: utils.withGrid(28), // Starting point: 28,31
+                y: utils.withGrid(31),
             }),
 
             npcA: new Person({
@@ -443,7 +454,7 @@ window.OverworldMaps = {
             vinamra: new Person({
                 x: utils.withGrid(23),
                 y: utils.withGrid(20),
-                src: "./images/brownGuy1.png",
+                src: "./images/vinamra.png",
                 useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
@@ -463,7 +474,7 @@ window.OverworldMaps = {
             shreyas: new Person({
                 x: utils.withGrid(9),
                 y: utils.withGrid(20),
-                src: "./images/brownGuy1.png",
+                src: "./images/shreyas.png",
                 useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
@@ -476,6 +487,46 @@ window.OverworldMaps = {
                         events: [
                             {type: "textMessage", text: "Shh, I got social anxiety...", faceHero: "shreyas"},
                             {type: "textMessage", text: "P.S: Why don't you give the web domain a try though?", faceHero: "shreyas"},
+                        ]
+                    },
+                ]
+            }),
+
+            theRock: new Person({
+                x: utils.withGrid(38),
+                y: utils.withGrid(54),
+                src: "./images/theRock.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "down", time: 100}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Dwayne: It's about drive, it's about power", faceHero: "theRock"},
+                            {type: "textMessage", text: "We stay hungry, we devour!", faceHero: "theRock"},
+                            {type: "textMessage", text: "Put in the work, put in the hour", faceHero: "theRock"},
+                            {type: "textMessage", text: "To take what's ours!!", faceHero: "theRock"},
+                        ]
+                    },
+                ]
+            }),
+
+            sumona: new Person({
+                x: utils.withGrid(25),
+                y: utils.withGrid(37),
+                src: "./images/sumona.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "down", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "sumona"},
                         ]
                     },
                 ]
@@ -496,14 +547,13 @@ window.OverworldMaps = {
             whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
 
             treasureBox1: getTreasureBox(21,47,1),
-            treasureBox2: getTreasureBox(-2,37,2),
-            treasureBox3: getTreasureBox(44,32,3),
-            treasureBox4: getTreasureBox(32,19,4),
-            treasureBox5: getTreasureBox(26,19,5),
-            treasureBox6: getTreasureBox(43,18,6),
-            treasureBox7: getTreasureBox(15,68,7),
-            treasureBox8: getTreasureBox(37,50,8),
-            treasureBox9: getTreasureBox(12,2,9),
+            treasureBox2: getTreasureBox(44,32,2),
+            treasureBox3: getTreasureBox(32,19,3),
+            treasureBox4: getTreasureBox(26,19,4),
+            treasureBox5: getTreasureBox(43,18,5),
+            treasureBox6: getTreasureBox(15,68,6),
+            treasureBox7: getTreasureBox(37,50,7),
+            treasureBox8: getTreasureBox(12,2,8),
 
         },
         walls: WALLS,
@@ -511,6 +561,5 @@ window.OverworldMaps = {
             ...allCutsceneSpaces,
             ...allRedirects,
         },
-        
     },
 }

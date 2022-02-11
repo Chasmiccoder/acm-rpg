@@ -124,8 +124,15 @@ let shreyas_cutscene_set_of_coords_raw = [[10,17],[11,17],[11,18],[11,19],[11,20
 let shreyas_cutscene_set_of_coords = getCutsceneSetOfCoords(shreyas_cutscene_set_of_coords_raw);
 
 
+X = "sumona"
+let sumonaPath = [
+    walkUp(X),walkRight(X),walkRight(X),walkRight(X),walkUp(X),standUp(X,200),
+    {type: "textMessage", text:"Welcome Message!"},
+    walkDown(X),walkLeft(X),walkLeft(X),walkLeft(X),walkDown(X),standUp(X,200),
+];
 
-
+let sumona_cutscene_set_of_coords_raw = [[27,33],[28,33],[29,33]]
+let sumona_cutscene_set_of_coords = getCutsceneSetOfCoords(sumona_cutscene_set_of_coords_raw);
 
 
 
