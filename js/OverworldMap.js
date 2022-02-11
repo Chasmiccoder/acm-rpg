@@ -531,6 +531,21 @@ window.OverworldMaps = {
                 ]
             }),
 
+            // for the mini drone in R&D room
+            drone: new Person({
+                x: utils.withGrid(23),
+                y: utils.withGrid(22),
+                src: "./images/droneOld.png",
+                useShadow: true,
+                behaviorLoop: [
+                    walkRight("drone"),walkRight("drone"),walkRight("drone"),walkRight("drone"),
+                    standRight("drone",1000),
+                    walkUp("drone"),walkUp("drone"),standRight("drone",1000),
+                    walkDown("drone"),walkDown("drone"),
+                    walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),standRight("drone",1000),
+                ],
+            }),
+
             shreyas: new Person({
                 x: utils.withGrid(9),
                 y: utils.withGrid(20),
@@ -552,10 +567,35 @@ window.OverworldMaps = {
                 ]
             }),
 
+            likhit: new Person({
+                x: utils.withGrid(45),
+                y: utils.withGrid(37),
+                src: "./images/likhit.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "down", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Likhit: Aao friends, chai peelo", faceHero: "likhit"},
+                        ]
+                    },
+                ]
+            }),
+
+            // khub bhai - 
+            // Ao Chill Mare
+
+
+
             theRock: new Person({
-                x: utils.withGrid(38),
+                x: utils.withGrid(39),
                 y: utils.withGrid(54),
-                src: "./images/theRock.png",
+                src: "./images/blankGuy.png",
                 useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "down", time: 100}
@@ -615,18 +655,43 @@ window.OverworldMaps = {
                 ]
             }),
 
+            khub: new Person({
+                x: utils.withGrid(42),
+                y: utils.withGrid(25),
+                src: "./images/khub.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "down", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Khub: psst", faceHero: "khub"},
+                            {type: "textMessage", text: "Have you heard the legend of the 8 secret treasures?", faceHero: "khub"},
+                            {type: "textMessage", text: "Rumour has it that if you collect all 8, then something special happens", faceHero: "khub"},
+                        ]
+                    },
+                ]
+            }),
+
             twitterPerson1: getRoute(31,40,"Twitter", "https://twitter.com/ACM_VIT"),
             twitterPerson2: getRoute(32,40,"Twitter", "https://twitter.com/ACM_VIT"),
             instagramPerson1: getRoute(33,41,"Instagram","https://www.instagram.com/acmvit/"),
             instagramPerson2: getRoute(34,41,"Instagram","https://www.instagram.com/acmvit/"),
             discordPerson1: getRoute(35,40,"Discord", "https://with.acmvit.in/discord"),
             discordPerson2: getRoute(36,40,"Discord", "https://with.acmvit.in/discord"),
-            linkedinPerson1: getRoute(37,39,"LinkedIn", "https://www.linkedin.com/company/acm-vit/"),
-            linkedinPerson2: getRoute(38,39,"LinkedIn", "https://www.linkedin.com/company/acm-vit/"),
+            linkedinPerson1: getRoute(37,39,"LinkedIn", "https://www.linkedin.com/company/acmvit/"),
+            linkedinPerson2: getRoute(38,39,"LinkedIn", "https://www.linkedin.com/company/acmvit/"),
             facebookPerson1: getRoute(26,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
             facebookPerson2: getRoute(25,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
             whatsappPerson1: getRoute(45,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
             whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+            mailboxPerson1: getRoute(39,27,"Email", "https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=outreach.acmvit@gmail.com"),
+            mailboxPerson2: getRoute(39,28,"Email", "https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=outreach.acmvit@gmail.com"),
+
 
             treasureBox1: getTreasureBox(21,47,1),
             treasureBox2: getTreasureBox(44,32,2),

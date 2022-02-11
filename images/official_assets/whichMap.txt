@@ -1,1 +1,0 @@
-using ourMap32.svg and changing the whole game accordingly
