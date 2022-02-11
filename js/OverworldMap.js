@@ -37,6 +37,71 @@ const getTreasureBox = (x,y,box_id) => {
     return box;
 }
 
+// Generate the cutscene spaces for one cutscene event
+// for example, with one function call, we can get the cutscenes defined for all tiles for one cutscene trigger
+const generateCutsceneSpaces = (person_cutscene_set_of_coords_raw, personPath) => {
+    let coords = person_cutscene_set_of_coords_raw;
+    let dict = {};
+    for(let i = 0; i < coords.length; i++) {
+        dict[[utils.asGridCoord(coords[i][0],coords[i][1])]] = [{events: personPath}];
+    }
+    return dict;
+}
+
+
+// contains the footstep triggered cutscenes for all events in the game
+let allCutsceneSpaces = {
+    
+    ...generateCutsceneSpaces(hemanth_cutscene_set_of_coords_raw, hemanthPath),
+    ...generateCutsceneSpaces(dhriti_cutscene_set_of_coords_raw, dhritiPath),
+    ...generateCutsceneSpaces(diya_cutscene_set_of_coords_raw, diyaPath),
+    ...generateCutsceneSpaces(rehber_cutscene_set_of_coords_raw, rehberPath),
+    ...generateCutsceneSpaces(vinamra_cutscene_set_of_coords_raw, vinamraPath),
+
+    // TODO
+    // [utils.asGridCoord(10,17)]: [{events: shreyasPath}],
+    // [utils.asGridCoord(11,17)]: [{events: shreyasPath}],
+};
+
+// All redirects to other urls (also triggered by footsteps)
+let allRedirects = {
+    [utils.asGridCoord(14,5)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Technical Form!"},
+                {type: "redirectPerson", link: "./technical"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(27,68)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Competitive Coding Form!"},
+                {type: "redirectPerson", link: "./competitive"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(-2,31)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Design Form!"},
+                {type: "redirectPerson", link: "./design"},
+            ]
+        }
+    ],
+
+    [utils.asGridCoord(6,44)]: [
+        {
+            events: [
+                {type: "textMessage", text: "Redirecting to the Management Form!"},
+                {type: "redirectPerson", link: "./management"},
+            ]
+        }
+    ],
+}
+
 class OverworldMap {
     constructor(config) {
         // adding a back-reference to the overworld
@@ -126,19 +191,17 @@ class OverworldMap {
             this.startCutscene(match[0].events); // right now it's pulling the behavior at the 0th index. Can be changed depending on the current story
         }
 
+        // REFACTOR
+
         // if hero steps on a 'set' of tiles that triggers 'one' cutscene
         // then remove that 'set' of tiles for that corresponding cutscene from cutsceneSpaces
         // optimize later, dividing by 32 for now, but use proper utils function later
         const hero_tile = `${hero.x},${hero.y}`;
         
         if(hemanth_cutscene_set_of_coords.includes(hero_tile)) {
-            // console.log("before:", this.cutsceneSpaces);
-            // let tmp = {...this.cutsceneSpa
             for(let i = 0; i < hemanth_cutscene_set_of_coords.length; i++) {
                 delete this.cutsceneSpaces[hemanth_cutscene_set_of_coords[i]];
             }
-            // this.cutsceneSpaces = [...tmp];
-            // console.log("after:", this.cutsceneSpaces);
         }
 
         else if(dhriti_cutscene_set_of_coords.includes(hero_tile)) {
@@ -158,6 +221,14 @@ class OverworldMap {
                 delete this.cutsceneSpaces[rehber_cutscene_set_of_coords[i]];
             }
         }
+
+        else if(vinamra_cutscene_set_of_coords.includes(hero_tile)) {
+            for(let i = 0; i < vinamra_cutscene_set_of_coords.length; i++) {
+                delete this.cutsceneSpaces[vinamra_cutscene_set_of_coords[i]];
+            }
+        }
+
+        
 
     }
 
@@ -185,8 +256,8 @@ window.OverworldMaps = {
                 isPlayerControlled: true,
                 src: "./images/Hero.png",
                 useShadow: true,
-                x: utils.withGrid(28), // Starting point: 28,32
-                y: utils.withGrid(32),
+                x: utils.withGrid(15), // Starting point: 28,32
+                y: utils.withGrid(24),
             }),
 
             npcA: new Person({
@@ -252,7 +323,7 @@ window.OverworldMaps = {
                         events: [
                             {type: "textMessage", text: "It's about drive, it's about power", faceHero: "dhriti"},
                             {type: "textMessage", text: "We stay hungry, we devour!"},
-                        ]
+                        ]   
                     },
                 ]
             }),
@@ -369,6 +440,48 @@ window.OverworldMaps = {
                 ]
             }),
 
+            vinamra: new Person({
+                x: utils.withGrid(23),
+                y: utils.withGrid(20),
+                src: "./images/brownGuy1.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "down", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "It's about drive, it's about power", faceHero: "vinamra"},
+                        ]
+                    },
+                ]
+            }),
+
+            shreyas: new Person({
+                x: utils.withGrid(9),
+                y: utils.withGrid(20),
+                src: "./images/brownGuy1.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "down", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Shh, I got social anxiety...", faceHero: "shreyas"},
+                            {type: "textMessage", text: "P.S: Why don't you give the web domain a try though?", faceHero: "shreyas"},
+                        ]
+                    },
+                ]
+            }),
+
+
             twitterPerson1: getRoute(31,40,"Twitter", "https://twitter.com/ACM_VIT"),
             twitterPerson2: getRoute(32,40,"Twitter", "https://twitter.com/ACM_VIT"),
             instagramPerson1: getRoute(33,41,"Instagram","https://www.instagram.com/acmvit/"),
@@ -395,73 +508,9 @@ window.OverworldMaps = {
         },
         walls: WALLS,
         cutsceneSpaces: {
-            // scope for refactoring
-            [utils.asGridCoord(10,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(11,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(12,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(13,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(14,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(15,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(16,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(17,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(18,9)]: [{events: hemanthPath}],
-            [utils.asGridCoord(19,9)]: [{events: hemanthPath}],
-
-            [utils.asGridCoord(9,31)]: [{events: dhritiPath}],
-            [utils.asGridCoord(9,32)]: [{events: dhritiPath}],
-            [utils.asGridCoord(9,33)]: [{events: dhritiPath}],
-            [utils.asGridCoord(9,34)]: [{events: dhritiPath}],
-            [utils.asGridCoord(9,35)]: [{events: dhritiPath}],
-            [utils.asGridCoord(9,36)]: [{events: dhritiPath}],
-            [utils.asGridCoord(9,37)]: [{events: dhritiPath}],
-
-            [utils.asGridCoord(12,38)]: [{events: diyaPath}],
-            [utils.asGridCoord(13,38)]: [{events: diyaPath}],
-            [utils.asGridCoord(14,38)]: [{events: diyaPath}],
-            [utils.asGridCoord(15,38)]: [{events: diyaPath}],
-            [utils.asGridCoord(16,38)]: [{events: diyaPath}],
-            [utils.asGridCoord(17,38)]: [{events: diyaPath}],
-            [utils.asGridCoord(18,38)]: [{events: diyaPath}],
-
-            [utils.asGridCoord(33,63)]: [{events: rehberPath}],
-            [utils.asGridCoord(34,63)]: [{events: rehberPath}],
-            [utils.asGridCoord(35,38)]: [{events: rehberPath}],
-
-            [utils.asGridCoord(14,5)]: [
-                {
-                    events: [
-                        {type: "textMessage", text: "Redirecting to the Technical Form!"},
-                        {type: "redirectPerson", link: "./technical"},
-                    ]
-                }
-            ],
-
-            [utils.asGridCoord(27,68)]: [
-                {
-                    events: [
-                        {type: "textMessage", text: "Redirecting to the Competitive Coding Form!"},
-                        {type: "redirectPerson", link: "./competitive"},
-                    ]
-                }
-            ],
-
-            [utils.asGridCoord(-2,31)]: [
-                {
-                    events: [
-                        {type: "textMessage", text: "Redirecting to the Design Form!"},
-                        {type: "redirectPerson", link: "./design"},
-                    ]
-                }
-            ],
-
-            [utils.asGridCoord(6,44)]: [
-                {
-                    events: [
-                        {type: "textMessage", text: "Redirecting to the Management Form!"},
-                        {type: "redirectPerson", link: "./management"},
-                    ]
-                }
-            ],
-        }
+            ...allCutsceneSpaces,
+            ...allRedirects,
+        },
+        
     },
 }

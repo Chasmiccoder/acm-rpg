@@ -30,6 +30,10 @@ const standDown = (who, duration = 500) => {
     return {who: who, type: "stand", direction: "down", time:duration};
 }
 
+/*
+For cutscenes:
+*/
+
 const getCutsceneSetOfCoords = (coordinateList) => {
     let arr = [];
     for(let i = 0; i < coordinateList.length; i++) {
@@ -40,8 +44,6 @@ const getCutsceneSetOfCoords = (coordinateList) => {
     }
     return arr;
 }
-
-
 
 // current person
 let X = "hemanth";
@@ -54,8 +56,8 @@ let hemanthPath = [
 ]
 
 // hemanth's cutscene's set of coordinates
-let hemanth_cutscene_set_of_coords = [[10,9],[11,9],[12,9],[13,9],[14,9],[15,9],[16,9],[17,9],[18,9],[19,9]]
-hemanth_cutscene_set_of_coords = getCutsceneSetOfCoords(hemanth_cutscene_set_of_coords);
+let hemanth_cutscene_set_of_coords_raw = [[10,9],[11,9],[12,9],[13,9],[14,9],[15,9],[16,9],[17,9],[18,9],[19,9]] // raw == tile format and not in pixel format
+let hemanth_cutscene_set_of_coords = getCutsceneSetOfCoords(hemanth_cutscene_set_of_coords_raw); // pixel format
 
 X = "dhriti";
 let dhritiPath = [
@@ -69,20 +71,20 @@ let dhritiPath = [
     walkLeft(X),walkUp(X),walkLeft(X),walkUp(X),
 ]
 
-let dhriti_cutscene_set_of_coords = [[9,31],[9,32],[9,33],[9,34],[9,35],[9,36],[9,37]];
-dhriti_cutscene_set_of_coords = getCutsceneSetOfCoords(dhriti_cutscene_set_of_coords);
+let dhriti_cutscene_set_of_coords_raw = [[9,31],[9,32],[9,33],[9,34],[9,35],[9,36],[9,37]];
+let dhriti_cutscene_set_of_coords = getCutsceneSetOfCoords(dhriti_cutscene_set_of_coords_raw);
 
 X = "diya";
 let diyaPath = [
     walkUp(X),walkLeft(X),walkUp(X),walkUp(X),walkUp(X),
     standUp(X,500),
-    {type: "textMessage", text:"Will you be able to manage management?"},
+    {type: "textMessage", text:"Will you be able to manage management, while having a great social life?"},
     {type: "textMessage", text: "If so, enter the portal center to apply!"},
     walkRight(X),walkDown(X),walkDown(X),walkDown(X),walkDown(X),
 ]
 
-let diya_cutscene_set_of_coords = [[12,38],[13,38],[14,38],[15,38],[16,38],[17,38],[18,38]];
-diya_cutscene_set_of_coords = getCutsceneSetOfCoords(diya_cutscene_set_of_coords);
+let diya_cutscene_set_of_coords_raw = [[12,38],[13,38],[14,38],[15,38],[16,38],[17,38],[18,38]];
+let diya_cutscene_set_of_coords = getCutsceneSetOfCoords(diya_cutscene_set_of_coords_raw);
 
 X = "rehber";
 let rehberPath = [
@@ -93,5 +95,37 @@ let rehberPath = [
     walkLeft(X),walkDown(X),walkDown(X),walkLeft(X),walkLeft(X),walkLeft(X),
 ]
 
-let rehber_cutscene_set_of_coords = [[33,63],[34,63],[35,63]];
-rehber_cutscene_set_of_coords = getCutsceneSetOfCoords(rehber_cutscene_set_of_coords);
+let rehber_cutscene_set_of_coords_raw = [[33,63],[34,63],[35,63]];
+let rehber_cutscene_set_of_coords = getCutsceneSetOfCoords(rehber_cutscene_set_of_coords_raw);
+
+
+// Research cutscene
+X = "vinamra";
+let vinamraPath = [
+    walkDown(X),walkLeft(X),walkLeft(X),walkLeft(X),standLeft(X,200),
+    {type: "textMessage", text:"In the Research domain we work on cool, nonstandard technologies..."},
+    {type: "textMessage", text:"If you have a curious mindset, fill the research form!"},
+    walkRight(X),walkRight(X),walkRight(X),walkUp(X),standDown(X,200),
+]
+
+// if you have a curious mindset, fill research form!
+let vinamra_cutscene_set_of_coords_raw = [[18,20],[18,21],[18,22],[18,23]]
+let vinamra_cutscene_set_of_coords = getCutsceneSetOfCoords(vinamra_cutscene_set_of_coords_raw);
+
+ 
+X = "shreyas"
+let shreyasPath = [
+    walkDown(X),standRight(X,200),
+    {type: "textMessage", text:"To join our awesome web domain, hop into this portal you see ahead!"},
+    walkUp(X),standRight(X,200),
+]
+
+let shreyas_cutscene_set_of_coords_raw = [[10,17],[11,17],[11,18],[11,19],[11,20],[11,21],[11,22],[11,23],[11,24],[10,24]]
+let shreyas_cutscene_set_of_coords = getCutsceneSetOfCoords(shreyas_cutscene_set_of_coords_raw);
+
+
+
+
+
+
+
