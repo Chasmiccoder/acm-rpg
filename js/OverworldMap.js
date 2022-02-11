@@ -1,101 +1,4 @@
-let hemanthPath = [
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-    {who: "hemanth", type: "walk", direction: "right"},
-
-    {who: "hemanth", type: "stand", direction: "right", time:500},
-    {type: "textMessage", text: "Are you up for applying to the technical department?"},
-    {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
-
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-    {who: "hemanth", type: "walk", direction: "left"},
-]
-
-// hemanth's cutscene's set of coordinates
-let hemanth_cutscene_set_of_coords = [`${10*32},${9*32}`,`${11*32},${9*32}`,`${12*32},${9*32}`,`${13*32},${9*32}`,`${14*32},${9*32}`,`${15*32},${9*32}`,`${16*32},${9*32}`,`${17*32},${9*32}`,`${18*32},${9*32}`,`${19*32},${9*32}`,];
-
-let dhritiPath = [
-    {who: "dhriti", type: "walk", direction: "down"},
-    {who: "dhriti", type: "walk", direction: "right"},
-    {who: "dhriti", type: "walk", direction: "down"},
-    {who: "dhriti", type: "walk", direction: "right"},
-
-    {who: "dhriti", type: "walk", direction: "right"},
-    {who: "dhriti", type: "walk", direction: "right"},
-    {who: "dhriti", type: "walk", direction: "right"},
-
-    {who: "dhriti", type: "stand", direction: "right", time:500},
-    {type: "textMessage", text: "Are you good looking?"},
-    {type: "textMessage", text: "Of course you are!"},
-    {type: "textMessage", text: "But we want people that can make things that are good looking..."},
-    {type: "textMessage", text: "If you're interested, enter the portal and hit 'Enter'!"},
-
-    {who: "dhriti", type: "walk", direction: "left"},
-    {who: "dhriti", type: "walk", direction: "left"},
-    {who: "dhriti", type: "walk", direction: "left"},
-
-    {who: "dhriti", type: "walk", direction: "left"},
-    {who: "dhriti", type: "walk", direction: "up"},
-    {who: "dhriti", type: "walk", direction: "left"},
-    {who: "dhriti", type: "walk", direction: "up"},
-]
-
-let dhriti_cutscene_set_of_coords = [`${9*32},${31*32}`,`${9*32},${32*32}`,`${9*32},${33*32}`,`${9*32},${34*32}`,`${9*32},${35*32}`,`${9*32},${36*32}`,`${9*32},${37*32}`];
-
-let diyaPath = [
-    {who: "diya", type: "walk", direction: "up"},
-    {who: "diya", type: "walk", direction: "left"},
-    {who: "diya", type: "walk", direction: "up"},
-    {who: "diya", type: "walk", direction: "up"},
-    {who: "diya", type: "walk", direction: "up"},
-    
-    {who: "diya", type: "stand", direction: "up", time:500},
-    {type: "textMessage", text:"Will you be able to manage management?"},
-    {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
-
-    {who: "diya", type: "walk", direction: "right"},
-    {who: "diya", type: "walk", direction: "down"},
-    {who: "diya", type: "walk", direction: "down"},
-    {who: "diya", type: "walk", direction: "down"},
-    {who: "diya", type: "walk", direction: "down"},
-]
-
-let diya_cutscene_set_of_coords = [`${12*32},${38*32}`,`${13*32},${38*32}`,`${14*32},${38*32}`,`${15*32},${38*32}`,`${16*32},${38*32}`,`${17*32},${38*32}`,`${18*32},${38*32}`];
-
-
-let rehberPath = [
-    {who: "rehber", type: "walk", direction: "right"},
-    {who: "rehber", type: "walk", direction: "right"},
-    {who: "rehber", type: "walk", direction: "right"},
-    {who: "rehber", type: "walk", direction: "right"},
-    {who: "rehber", type: "walk", direction: "up"},
-    {who: "rehber", type: "walk", direction: "up"},
-
-    {who: "rehber", type: "stand", direction: "up", time:500},
-    {type: "textMessage", text:"Wanna join our cool competitive team?"},
-    {type: "textMessage", text: "If so, enter the portal and hit 'Enter'!"},
-
-    {who: "rehber", type: "walk", direction: "left"},
-    {who: "rehber", type: "walk", direction: "down"},
-    {who: "rehber", type: "walk", direction: "down"},
-    {who: "rehber", type: "walk", direction: "left"},
-    {who: "rehber", type: "walk", direction: "left"},
-    {who: "rehber", type: "walk", direction: "left"},
-]
-
-let rehber_cutscene_set_of_coords = [`${33*32},${63*32}`, `${34*32},${63*32}`, `${35*32},${63*32}`];
-
+// for redirects to Twitter, Instagram, etc
 const getRoute = (x,y, name, link) =>{
     let route = new Person({
         x: utils.withGrid(x),
@@ -115,6 +18,7 @@ const getRoute = (x,y, name, link) =>{
     return route;
 }
 
+// Treasure box person objects
 const getTreasureBox = (x,y,box_id) => {
     let box = new Person({
         x: utils.withGrid(x),
@@ -126,7 +30,6 @@ const getTreasureBox = (x,y,box_id) => {
                 events: [
                     {type: "textMessage", text: `Secret Treasure Unlocked!`},
                     {type: "unlockTreasure", box_id:box_id},
-                    // {type: "redirectPerson", link: link, newTab: true},
                 ]
             },
         ]
@@ -315,10 +218,10 @@ window.OverworldMaps = {
                 src: "./images/brownGuy1.png",
                 useShadow: true,
                 behaviorLoop: [
-                    {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "up", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
-                    {type: "stand", direction: "up", time: 300}
+                    standLeft("hemanth",800),
+                    standUp("hemanth",800),
+                    standRight("hemanth",1200),
+                    standUp("hemanth",300),
                 ],
                 talking: [
                     {
@@ -430,68 +333,37 @@ window.OverworldMaps = {
                 ],
                 talking: [
                     {
-                        events: [
+                        events: [  // A tour of ACM's events
                             {type: "textMessage", text: "Let me give you a tour of our events", faceHero: "rishabh"},
-                            {who: "hero", type: "walk", direction: "right"},
-                            {who: "hero", type: "walk", direction: "up"},
-                            {who: "hero", type: "walk", direction: "right"},
-                            {who: "hero", type: "walk", direction: "right"},
-                            {who: "hero", type: "walk", direction: "right"},
-                            {who: "hero", type: "walk", direction: "right"},
-                            {who: "hero", type: "walk", direction: "right"},
-                            {who: "hero", type: "walk", direction: "up"},
-                            {who: "hero", type: "stand", direction: "left", time:200},
-                            {who: "rishabh", type: "walk", direction: "up"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "up"},
-                            {who: "rishabh", type: "walk", direction: "up"},
-                            {who: "rishabh", type: "walk", direction: "up"},
-                            {who: "rishabh", type: "stand", direction: "right", time:200},
+                            walkRight("hero"),walkUp("hero"),walkRight("hero"),walkRight("hero"),walkRight("hero"),walkRight("hero"),walkRight("hero"),
+                            walkUp("hero"),standLeft("hero",200),
+
+                            walkUp("rishabh"),walkLeft("rishabh"),walkUp("rishabh"),walkUp("rishabh"),walkUp("rishabh"),standRight("rishabh",200),                            
                             {type: "textMessage", text: "This is our app centric hackathon, Apptitude,"},
-                            {type: "textMessage", text: "We gave away over 50k in cash prizes xD"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "right"},
+                            {type: "textMessage", text: "Where we gave away over 50k in cash prizes :D"},
+                            
+                            walkRight("rishabh"),walkRight("rishabh"),
                             {type: "textMessage", text: "This is Reverse Coding, our competitive coding event with a twist"},
-                            {type: "textMessage", text: "which got over 2800 participants!"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "up"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "stand", direction: "up", time:200},
-                            {who: "hero", type: "stand", direction: "up", time:200},
+                            {type: "textMessage", text: "which got over 2800 participants this year!"},
+
+                            walkRight("rishabh"),walkRight("rishabh"),walkUp("rishabh"),walkRight("rishabh"),walkRight("rishabh"),
+                            standUp("rishabh",200),standUp("hero",200),
                             {type: "textMessage", text: "This is Code2Create, our flagship hackathon,"},
                             {type: "textMessage", text: "Where participants from all over the world compete to win."},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "down"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "walk", direction: "right"},
-                            {who: "rishabh", type: "stand", direction: "up", time:200},
-                            {who: "hero", type: "stand", direction: "right", time:200},
+                            
+                            walkRight("rishabh"),walkRight("rishabh"),walkDown("rishabh"),walkRight("rishabh"),walkRight("rishabh"),walkRight("rishabh"),
+                            standUp("rishabh",200),standRight("hero",200),
                             {type: "textMessage", text: "In ACM Bootcamp,"},
                             {type: "textMessage", text: "we introduced newcomers to our domains through many mini projects!"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "down"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "stand", direction: "left", time:200},
+
+                            walkLeft("rishabh"),walkDown("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),
+                            standLeft("rishabh",200),
                             {type: "textMessage", text: "It's fun being a participant,"},
                             {type: "textMessage", text: "however, it's even better being an organizer."},
                             {type: "textMessage", text: "If you choose to join ACMVIT you'll get to learn and grow as person :)"},
 
-                            {who: "rishabh", type: "walk", direction: "down"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "left"},
-                            {who: "rishabh", type: "walk", direction: "down"},
-                            {who: "rishabh", type: "walk", direction: "down"},
-                            {who: "rishabh", type: "stand", direction: "up", time:200},
+                            walkDown("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),walkLeft("rishabh"),
+                            walkDown("rishabh"),walkDown("rishabh"),standUp("rishabh",200),
                         ]
                     },
                 ]
@@ -523,6 +395,7 @@ window.OverworldMaps = {
         },
         walls: WALLS,
         cutsceneSpaces: {
+            // scope for refactoring
             [utils.asGridCoord(10,9)]: [{events: hemanthPath}],
             [utils.asGridCoord(11,9)]: [{events: hemanthPath}],
             [utils.asGridCoord(12,9)]: [{events: hemanthPath}],

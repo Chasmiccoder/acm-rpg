@@ -9,9 +9,6 @@ class Overworld {
         // this.gameContainer.style.width = window.innerWidth;
         // this.gameContainer.style.height = window.innerHeight;
 
-        // this.canvas.height = 1000; // TODO: Change this!
-        // this.canvas.width = 1500;
-
         console.log(this.canvas.width, this.canvas.height);
 
         this.context = this.canvas.getContext("2d");
