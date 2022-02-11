@@ -562,4 +562,6 @@ const WALLS = {
     [utils.asGridCoord(19,45)]: true,
     [utils.asGridCoord(20,45)]: true,
     [utils.asGridCoord(21,45)]: true,
+    [utils.asGridCoord(-4,32)]: true,
+    [utils.asGridCoord(0,30)]: true,
 };
