@@ -68,7 +68,7 @@ class OverworldEvent {
         const sceneTransition = new SceneTransition();
 
         sceneTransition.init(document.querySelector('.game-container'), () => {
-            this.map.overworld.startMap(window.OverworldMaps[this.event.map]); // the value this.event.map is referencing {type: "changeMap", map: "Kitchen"}  in OverworldMap
+            this.map.overworld.startMap(window.OverworldMaps[this.event.map]);
             resolve();
 
             sceneTransition.fadeOut();

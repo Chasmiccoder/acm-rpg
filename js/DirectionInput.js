@@ -13,7 +13,6 @@ class DirectionInput {
         }
     }
 
-
     init() {
         document.addEventListener("keydown", e => {
             const dir = this.map[e.code];

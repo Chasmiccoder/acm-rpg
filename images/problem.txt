@@ -1,6 +1,0 @@
-The problem is that when a cutscene is being played,
-the game objects pause their behaviour.
-But when the cutscene ends, the person's behaviour is starting
-from the first item in the behaviour loop.
-
-We need to be able to pick off from where we left

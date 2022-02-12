@@ -70,9 +70,6 @@ let yashPath = [
 let yash_cutscene_set_of_coords_raw = [[10,9],[11,9],[12,9],[13,9],[14,9],[15,9],[16,9],[17,9],[18,9],[19,9]] 
 let yash_cutscene_set_of_coords = getCutsceneSetOfCoords(yash_cutscene_set_of_coords_raw);
 
-
-
-
 X = "dhriti";
 let dhritiPath = [
     walkDown(X),walkRight(X),walkDown(X),walkRight(X),walkRight(X),walkRight(X),walkRight(X),

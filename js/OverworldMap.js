@@ -69,7 +69,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the General Technical domain's form!"},
-                {type: "redirectPerson", link: "./general_technical"},
+                {type: "redirectPerson", link: "./general_technical"}, // TODO
             ]
         }
     ],
@@ -78,7 +78,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the Research Domain's form!"},
-                {type: "redirectPerson", link: "./research"},
+                {type: "redirectPerson", link: "./attempt/research"},
             ]
         }
     ],
@@ -87,7 +87,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the Web Domain's form!"},
-                {type: "redirectPerson", link: "./web"},
+                {type: "redirectPerson", link: "./attempt/web"},
             ]
         }
     ],
@@ -96,7 +96,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the App Domain's form!"},
-                {type: "redirectPerson", link: "./app"},
+                {type: "redirectPerson", link: "./attempt/app"},
             ]
         }
     ],
@@ -105,7 +105,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the Competitive Coding Form!"},
-                {type: "redirectPerson", link: "./competitive"},
+                {type: "redirectPerson", link: "./attempt/cc"},
             ]
         }
     ],
@@ -114,7 +114,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the UI/UX Form!"},
-                {type: "redirectPerson", link: "./designUIUX"},
+                {type: "redirectPerson", link: "./attempt/uix"},
             ]
         }
     ],
@@ -123,7 +123,7 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the Graphic Design Form!"},
-                {type: "redirectPerson", link: "./designGraphic"},
+                {type: "redirectPerson", link: "./attempt/gd"},
             ]
         }
     ],
@@ -132,27 +132,16 @@ let allRedirects = {
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the Motion Design Form!"},
-                {type: "redirectPerson", link: "./designMotion"},
+                {type: "redirectPerson", link: "./attempt/mg"},
             ]
         }
     ],
-
-    [utils.asGridCoord(-3,37)]: [
-        {
-            events: [
-                {type: "textMessage", text: "Redirecting to the Graphic Design Form!"},
-                {type: "redirectPerson", link: "./designGraphic"},
-            ]
-        }
-    ],
-
-
 
     [utils.asGridCoord(6,44)]: [
         {
             events: [
                 {type: "textMessage", text: "Redirecting to the Management Form!"},
-                {type: "redirectPerson", link: "./management"},
+                {type: "redirectPerson", link: "./attempt/mgmt"},
             ]
         }
     ],
@@ -319,7 +308,7 @@ class OverworldMap {
 }
 
 window.OverworldMaps = {
-    DemoRoom: {
+    ACM_MAP: {
         lowerSrc: "./images/acmrpg.png", // current best map is= ./images/official_assets/ourMap32.png
         // upperSrc: "./images/blank_guy.png",
         gameObjects: {
@@ -328,7 +317,7 @@ window.OverworldMaps = {
                 src: "./images/Hero.png",
                 useShadow: true,
                 x: utils.withGrid(28), // Starting point: 28,31
-                y: utils.withGrid(31),
+                y: utils.withGrid(35),
             }),
 
             yash: new Person({
@@ -337,9 +326,9 @@ window.OverworldMaps = {
                 src: "./images/yash.png",
                 useShadow: true,
                 behaviorLoop: [
-                    {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "up", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "left", time: 900},
+                    {type: "stand", direction: "down", time: 800},
+                    {type: "stand", direction: "left", time: 1200},
                     {type: "stand", direction: "up", time: 300}
                 ],
                 talking: [
@@ -356,11 +345,11 @@ window.OverworldMaps = {
             hemanth: new Person({
                 x: utils.withGrid(2),
                 y: utils.withGrid(9),
-                src: "./images/brownGuy1.png",
+                src: "./images/hemanth.png",
                 useShadow: true,
                 behaviorLoop: [
                     standLeft("hemanth",800),
-                    standUp("hemanth",800),
+                    standUp("hemanth",900),
                     standRight("hemanth",1200),
                     standUp("hemanth",300),
                 ],
@@ -383,10 +372,8 @@ window.OverworldMaps = {
                 src: "./images/dhriti.png",
                 useShadow: true,
                 behaviorLoop: [
-                    {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "up", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
-                    {type: "stand", direction: "up", time: 300}
+                    {type: "stand", direction: "down", time: 800},
+                    
                 ],
                 talking: [
                     {
@@ -423,10 +410,10 @@ window.OverworldMaps = {
                 src: "./images/ishi.png",
                 useShadow: true,
                 behaviorLoop: [
-                    {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "up", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
-                    {type: "stand", direction: "up", time: 300}
+                    {type: "stand", direction: "left", time: 700},
+                    {type: "stand", direction: "up", time: 900},
+                    {type: "stand", direction: "right", time: 900},
+                    {type: "stand", direction: "up", time: 400}
                 ],
                 talking: [
                     {
@@ -535,14 +522,14 @@ window.OverworldMaps = {
             drone: new Person({
                 x: utils.withGrid(23),
                 y: utils.withGrid(22),
-                src: "./images/droneOld.png",
+                src: "./images/drone.png",
                 useShadow: true,
                 behaviorLoop: [
-                    walkRight("drone"),walkRight("drone"),walkRight("drone"),walkRight("drone"),
+                    walkRight("drone"),walkRight("drone"),walkRight("drone"),walkRight("drone"),walkRight("drone"),
                     standRight("drone",1000),
                     walkUp("drone"),walkUp("drone"),standRight("drone",1000),
                     walkDown("drone"),walkDown("drone"),
-                    walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),standRight("drone",1000),
+                    walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),walkLeft("drone"),standRight("drone",1000),
                 ],
             }),
 
@@ -574,9 +561,6 @@ window.OverworldMaps = {
                 useShadow: true,
                 behaviorLoop: [
                     {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "down", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
-                    {type: "stand", direction: "down", time: 300}
                 ],
                 talking: [
                     {
@@ -586,11 +570,6 @@ window.OverworldMaps = {
                     },
                 ]
             }),
-
-            // khub bhai - 
-            // Ao Chill Mare
-
-
 
             theRock: new Person({
                 x: utils.withGrid(39),
@@ -618,10 +597,10 @@ window.OverworldMaps = {
                 src: "./images/sumona.png",
                 useShadow: true,
                 behaviorLoop: [
-                    {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "down", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
-                    {type: "stand", direction: "down", time: 300}
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 800},
+                    {type: "stand", direction: "down", time: 1200},
+                    {type: "stand", direction: "right", time: 300}
                 ],
                 talking: [
                     {
@@ -640,10 +619,7 @@ window.OverworldMaps = {
                 src: "./images/ananya.png",
                 useShadow: true,
                 behaviorLoop: [
-                    {type: "stand", direction: "left", time: 800},
-                    {type: "stand", direction: "up", time: 800},
-                    {type: "stand", direction: "right", time: 1200},
-                    {type: "stand", direction: "up", time: 300}
+                    {type: "stand", direction: "down", time: 800},
                 ],
                 talking: [
                     {
@@ -677,6 +653,314 @@ window.OverworldMaps = {
                 ]
             }),
 
+            gagan: new Person({
+                x: utils.withGrid(37),
+                y: utils.withGrid(44),
+                src: "./images/gagan.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "up", time: 500},
+                    {type: "stand", direction: "left", time: 1000},
+                    {type: "stand", direction: "down", time: 900},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Gagan: Have you heard of the Styx Project?", faceHero: "gagan"},
+                            {type: "textMessage", text: "I'm the guy who made it.", faceHero: "gagan"},
+                            {type: "textMessage", text: "Btw, I use Arch", faceHero: "gagan"},
+                        ]
+                    },
+                ]
+            }),
+
+            rohan: new Person({
+                x: utils.withGrid(3),
+                y: utils.withGrid(35),
+                src: "./images/rohan.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "right", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Rohan: Constant is the only change.", faceHero: "rohan"},
+                        ]
+                    },
+                ]
+            }),
+
+            ansh: new Person({
+                x: utils.withGrid(30),
+                y: utils.withGrid(54),
+                src: "./images/ansh.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "up", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Ansh: Dive into CC!", faceHero: "ansh"},
+                        ]
+                    },
+                ]
+            }),
+
+            manvi: new Person({
+                x: utils.withGrid(6),
+                y: utils.withGrid(38),
+                src: "./images/manvi.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "up", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Manvi: Somethings always never make sense", faceHero: "manvi"},
+                        ]
+                    },
+                ]
+            }),
+
+            anmol: new Person({
+                x: utils.withGrid(1),
+                y: utils.withGrid(44),
+                src: "./images/anmol.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 400},
+                    {type: "stand", direction: "down", time: 500},
+                    {type: "stand", direction: "right", time: 300},
+                    {type: "stand", direction: "down", time: 700}
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Anmol: I like to move it, move it!", faceHero: "anmol"},
+                        ]
+                    },
+                ]
+            }),
+
+            srinivas: new Person({
+                x: utils.withGrid(39),
+                y: utils.withGrid(38),
+                src: "./images/srinivas.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "down", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Srinivas: The taste of water is underrated.", faceHero: "srinivas"},
+                        ]
+                    },
+                ]
+            }),
+
+            aishwariya: new Person({
+                x: utils.withGrid(43),
+                y: utils.withGrid(28),
+                src: "./images/aishwariya.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 1200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Aishwariya: Jack is a dull boy", faceHero: "aishwariya"},
+                        ]
+                    },
+                ]
+            }),
+
+            avinaash: new Person({
+                x: utils.withGrid(5),
+                y: utils.withGrid(13),
+                src: "./images/avinaash.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "up", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Avinaash: Your network is you Net Worth!", faceHero: "avinaash"},
+                        ]
+                    },
+                ]
+            }),
+
+            samridh: new Person({
+                x: utils.withGrid(32),
+                y: utils.withGrid(37),
+                src: "./images/samridh.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "up", time: 800},                    
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Samridh: Is sleeping for 15 hours alot or is it normal?", faceHero: "samridh"},
+                        ]
+                    },
+                ]
+            }),
+
+            vaishnavi: new Person({
+                x: utils.withGrid(23),
+                y: utils.withGrid(52),
+                src: "./images/vaishnavi.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "right", time: 900},
+                    {type: "stand", direction: "down", time: 1000},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Vaishnavi: Here's a tip for interviews,", faceHero: "vaishnavi"},
+                            {type: "textMessage", text: "Think out loud", faceHero: "vaishnavi"},
+
+                        ]
+                    },
+                ]
+            }),
+
+            swarup: new Person({
+                x: utils.withGrid(10),
+                y: utils.withGrid(26),
+                src: "./images/swarup.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "down", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Swarup: I solemnly swear I am up to no good", faceHero: "swarup"},
+                        ]
+                    },
+                ]
+            }),
+
+            anish: new Person({
+                x: utils.withGrid(17),
+                y: utils.withGrid(29),
+                src: "./images/anish.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Anish: ACM <3 React", faceHero: "anish"},
+                        ]
+                    },
+                ]
+            }),
+
+            chirayu: new Person({
+                x: utils.withGrid(40),
+                y: utils.withGrid(21),
+                src: "./images/chirayu.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Chirayu: Here's a tip!", faceHero: "chirayu"},
+                            {type: "textMessage", text: "Make your selling points clear.", faceHero: "chirayu"},
+                        ]
+                    },
+                ]
+            }), 
+
+            rishu: new Person({
+                x: utils.withGrid(19),
+                y: utils.withGrid(13),
+                src: "./images/rishu.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 1200},
+                    
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Rishu: If you're prepping for an interview,", faceHero: "rishu"},
+                            {type: "textMessage", text: "check out the STAR method", faceHero: "rishu"},                            
+                        ]
+                    },
+                ]
+            }),
+
+            tejas: new Person({
+                x: utils.withGrid(38),
+                y: utils.withGrid(51),
+                src: "./images/tejas.png",
+                useShadow: true,
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Tejas: I've heard that some rocks on this beach can talk", faceHero: "tejas"},
+                        ]
+                    },
+                ]
+            }),
+
+            harsh: new Person({
+                x: utils.withGrid(15),
+                y: utils.withGrid(71),
+                src: "./images/blankGuy.png",
+                useShadow: true,
+                behaviorLoop: [
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Harsh: Congrats on finding the hidden path!", faceHero: "harsh"},
+                            {type: "textMessage", text: "Here's a reward for your achievement", faceHero: "harsh"},
+                            {type: "textMessage", text: "https://youtu.be/KBL0UYWujMA", faceHero: "harsh"},
+                        ]
+                    },
+                ]
+            }),
+
+            aryaman: new Person({
+                x: utils.withGrid(17),
+                y: utils.withGrid(70),
+                src: "./images/blankGuy.png",
+                useShadow: true,
+                behaviorLoop: [
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type: "textMessage", text: "Aryaman: Hey there!", faceHero: "aryaman"},
+                            {type: "textMessage", text: "I hope you enjoyed playing this game as much as we enjoyed making it :)", faceHero: "aryaman"},                            
+                        ]
+                    },
+                ]
+            }),
+
             twitterPerson1: getRoute(31,40,"Twitter", "https://twitter.com/ACM_VIT"),
             twitterPerson2: getRoute(32,40,"Twitter", "https://twitter.com/ACM_VIT"),
             instagramPerson1: getRoute(33,41,"Instagram","https://www.instagram.com/acmvit/"),
@@ -692,15 +976,46 @@ window.OverworldMaps = {
             mailboxPerson1: getRoute(39,27,"Email", "https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=outreach.acmvit@gmail.com"),
             mailboxPerson2: getRoute(39,28,"Email", "https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=outreach.acmvit@gmail.com"),
 
+            // events -
+            apptitudePerson1: getRoute(30,8,"Apptitude", "https://apptitude-pwa.vercel.app/"),
+            apptitudePerson2: getRoute(31,8,"Apptitude", "https://apptitude-pwa.vercel.app/"),
+            rcPerson1: getRoute(32,8,"Reverse Coding Event", "https://rcpc.acmvit.in/"),
+            rcPerson2: getRoute(33,8,"Reverse Coding Event", "https://rcpc.acmvit.in/"),
+            rcPerson3: getRoute(34,8,"Reverse Coding Event", "https://rcpc.acmvit.in/"),
+            c2cPerson1: getRoute(36,7,"Code2Create", "https://c2c-website-2021-git-master-acm-vit.vercel.app/"),
+            c2cPerson2: getRoute(37,7,"Code2Create", "https://c2c-website-2021-git-master-acm-vit.vercel.app/"),
+            c2cPerson3: getRoute(38,7,"Code2Create", "https://c2c-website-2021-git-master-acm-vit.vercel.app/"),
+            c2cPerson4: getRoute(39,7,"Code2Create", "https://c2c-website-2021-git-master-acm-vit.vercel.app/"),
+            bootCampPerson1: getRoute(41,8,"Summer Bootcamp", "https://bootcamp-2021-frontend.vercel.app/"),
+            bootCampPerson2: getRoute(42,8,"Summer Bootcamp", "https://bootcamp-2021-frontend.vercel.app/"),
+            bootCampPerson3: getRoute(43,8,"Summer Bootcamp", "https://bootcamp-2021-frontend.vercel.app/"),
 
-            treasureBox1: getTreasureBox(21,47,1),
-            treasureBox2: getTreasureBox(44,32,2),
-            treasureBox3: getTreasureBox(32,19,3),
-            treasureBox4: getTreasureBox(26,19,4),
-            treasureBox5: getTreasureBox(43,18,5),
-            treasureBox6: getTreasureBox(15,68,6),
-            treasureBox7: getTreasureBox(37,50,7),
-            treasureBox8: getTreasureBox(12,2,8),
+            acmwPerson1: getRoute(21,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson2: getRoute(22,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson3: getRoute(23,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson4: getRoute(24,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson5: getRoute(25,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson6: getRoute(26,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson7: getRoute(27,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+            acmwPerson8: getRoute(28,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
+
+
+
+
+
+
+
+
+
+
+            treasureBox1: getTreasureBox(21,47,"c2c"),
+            treasureBox2: getTreasureBox(44,32,"apptitude"),
+            treasureBox3: getTreasureBox(32,19,"l2a"),
+            treasureBox4: getTreasureBox(26,19,"l2c"),
+            treasureBox5: getTreasureBox(43,18,"BTC"),
+            treasureBox6: getTreasureBox(15,68,"Stonk"),
+            treasureBox7: getTreasureBox(37,50,"ASYNC"),
+            treasureBox8: getTreasureBox(12,2,"Hi_Mom"),
 
         },
         walls: WALLS,

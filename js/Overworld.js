@@ -5,33 +5,18 @@ class Overworld {
         this.canvas.height = window.innerHeight;        
         this.canvas.width = window.innerWidth;
 
-        // this.gameContainer = this.element.querySelector(".game-container");
-        // this.gameContainer.style.width = window.innerWidth;
-        // this.gameContainer.style.height = window.innerHeight;
-
-        // console.log(this.canvas.width, this.canvas.height);
-
         this.context = this.canvas.getContext("2d");
         this.map = null;
     }
 
     init() {
-        this.startMap(window.OverworldMaps.DemoRoom);
+        this.startMap(window.OverworldMaps.ACM_MAP);
         this.bindActionInput();
         this.bindHeroPositionCheck();
         
         this.directionInput = new DirectionInput();
         this.directionInput.init();
-        
         this.startGameLoop();
-        // game loop fires at 60 fps
-
-    
-        // this.map.startCutscene([
-        //     {type: "changeMap", map: "DemoRoom"},
-        //     {type: "textMessage", text: "Why hello there! Welcome to ACM-RPG..."},
-        // ]);
-        
     }
 
     bindActionInput() {
@@ -64,12 +49,11 @@ class Overworld {
         const match = Object.values(this.map.gameObjects).find(object => {
             return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
         });
-        // console.log({match});
-
+        
         let interact_p = document.querySelector(".game-interact");
         
         if(match) {
-            // console.log("MATCHED");
+            
             interact_p.style.visibility = "visible"
         } else {
             // make it hidden again
