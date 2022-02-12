@@ -317,7 +317,7 @@ window.OverworldMaps = {
                 src: "./images/Hero.png",
                 useShadow: true,
                 x: utils.withGrid(28), // Starting point: 28,31
-                y: utils.withGrid(35),
+                y: utils.withGrid(31),
             }),
 
             yash: new Person({
@@ -998,15 +998,6 @@ window.OverworldMaps = {
             acmwPerson6: getRoute(26,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
             acmwPerson7: getRoute(27,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
             acmwPerson8: getRoute(28,9,"ACM-W", "https://www.instagram.com/acmwvit/"),
-
-
-
-
-
-
-
-
-
 
             treasureBox1: getTreasureBox(21,47,"c2c"),
             treasureBox2: getTreasureBox(44,32,"apptitude"),
