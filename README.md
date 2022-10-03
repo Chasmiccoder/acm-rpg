@@ -1,15 +1,15 @@
 # ACM-Recruitment-Portal 🚀
 RPG inspired recruitment portal for the year 2022
 
-## Play here!  
+## Play here! 🎮
 https://acm-rpg.netlify.app/
 
-## Gameplay
+## Gameplay 📹
 ![gameplay gif](./acmrpg-gameplay.gif)
 
 ## Resources 📕
 Got most of the game dev logic from this amazing series,  
-https://www.youtube.com/playlist?list=PLcjhmZ8oLT0r9dSiIK6RB_PuBWlG1KSq  
+https://www.youtube.com/watch?v=fyi4vfbKEeo&list=PLcjhmZ8oLT0r9dSiIK6RB_PuBWlG1KSq_
 
 Got the spritesheets from -  
 [don't remember T_T, sorry]  
