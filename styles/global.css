@@ -49,8 +49,6 @@ body {
     text-align: center;
 }
 
-
-
 .game-container{
     position: relative;
     margin: 0;
@@ -64,5 +62,3 @@ body {
     /* Removes the blur, which occurs due to scaling */
     image-rendering: pixelated;
 }
-
-

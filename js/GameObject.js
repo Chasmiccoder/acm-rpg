@@ -11,7 +11,7 @@ class GameObject {  // all people
         });
 
         this.behaviorLoop = config.behaviorLoop || []; // used for the behavior of npcs. This is a list of objects with the behavior type, which is defined in OverworldMap.js
-        this.behaviorLoopIndex = 0; // keeps track of 
+        this.behaviorLoopIndex = 0;
         this.talking = config.talking || [];
     }
 

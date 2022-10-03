@@ -1,3 +1,5 @@
+# Script that uses the map outline to find the exact coordinates of the walls
+
 from PIL import Image
 from numpy import asarray
 import numpy as np
@@ -54,5 +56,3 @@ for i in coordinate_list:
 
 with open("wall_coordinates.txt", "w") as file:
     file.writelines(file_list)
-
-
