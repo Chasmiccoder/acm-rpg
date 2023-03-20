@@ -1012,7 +1012,7 @@ window.OverworldMaps = {
         walls: WALLS,
         cutsceneSpaces: {
             ...allCutsceneSpaces,
-            ...allRedirects,
+            // ...allRedirects,
         },
     },
 }
