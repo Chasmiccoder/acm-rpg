@@ -75,13 +75,7 @@ class OverworldEvent {
     }
 
     redirectPerson(resolve) {
-        let link = this.event.link || true;
-
-        if(link === true) {
-        return ;
-        }
-
-        let newTab = this.event.newTab; // NOT WORKING. Always opening new tab
+         let newTab = this.event.newTab; // NOT WORKING. Always opening new tab
         if(newTab) {
             window.open(link, '_blank');
         } else {
