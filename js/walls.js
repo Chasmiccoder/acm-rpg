@@ -565,6 +565,7 @@ const WALLS = {
     [utils.asGridCoord(-4,32)]: true,
     [utils.asGridCoord(0,30)]: true,
 
+    // these are the whatsapp tiles
     [utils.asGridCoord(45,32)]: true,
     [utils.asGridCoord(46,32)]: true,
 };
