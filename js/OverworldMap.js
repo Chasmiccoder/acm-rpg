@@ -971,8 +971,10 @@ window.OverworldMaps = {
             linkedinPerson2: getRoute(38,39,"LinkedIn", "https://www.linkedin.com/company/acmvit/"),
             facebookPerson1: getRoute(26,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
             facebookPerson2: getRoute(25,42,"Facebook", "https://www.facebook.com/acmvitchapter/"),
-            whatsappPerson1: getRoute(45,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
-            whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+            // whatsappPerson1: getRoute(45,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+            // whatsappPerson2: getRoute(46,32,"Kick Start Learn Program", "https://with.acmvit.in/ksl"),
+            // whatsappPerson1: getRoute(45,32,"", ""),
+            // whatsappPerson2: getRoute(46,32,"", ""),
             mailboxPerson1: getRoute(39,27,"Email", "https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=outreach.acmvit@gmail.com"),
             mailboxPerson2: getRoute(39,28,"Email", "https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=outreach.acmvit@gmail.com"),
 

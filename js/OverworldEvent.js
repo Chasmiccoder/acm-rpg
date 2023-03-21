@@ -55,7 +55,6 @@ class OverworldEvent {
             const obj = this.map.gameObjects[this.event.faceHero];
             obj.direction = utils.oppositeDirection(this.map.gameObjects['hero'].direction);
         }
-
         const message = new TextMessage({   
             text: this.event.text,
             onComplete: () => resolve()
@@ -76,8 +75,13 @@ class OverworldEvent {
     }
 
     redirectPerson(resolve) {
-        let link = this.event.link;
-        let newTab = this.event.newTab || false; // NOT WORKING. Always opening new tab
+        let link = this.event.link || true;
+
+        if(link === true) {
+        return ;
+        }
+
+        let newTab = this.event.newTab; // NOT WORKING. Always opening new tab
         if(newTab) {
             window.open(link, '_blank');
         } else {
